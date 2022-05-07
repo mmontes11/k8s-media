@@ -27,15 +27,15 @@ persistence:
     - name: originals
       nfs:
         server: *nas
-        path: /photoprism/mmontes/originals
+        path: /volume1/homes/mmontes
     - name: import
       nfs:
         server: *nas
-        path: /photoprism/mmontes/import
+        path: /volume1/photoprism/mmontes/import
     - name: storage
       nfs:
         server: *nas
-        path: /photoprism/mmontes/storage
+        path: /volume1/photoprism/mmontes/storage
 
   volumeMounts:
     - name: originals

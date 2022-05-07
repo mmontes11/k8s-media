@@ -27,15 +27,15 @@ persistence:
     - name: originals
       nfs:
         server: *nas
-        path: /photoprism/xiaowen/originals
+        path: /volume1/homes/xiaowen
     - name: import
       nfs:
         server: *nas
-        path: /photoprism/xiaowen/import
+        path: /volume1/photoprism/xiaowen/import
     - name: storage
       nfs:
         server: *nas
-        path: /photoprism/xiaowen/storage
+        path: /volume1/photoprism/xiaowen/storage
 
   volumeMounts:
     - name: originals
