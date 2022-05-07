@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism-xiaowen-mariadb
+spec:
+  releaseName: photoprism-xiaowen-mariadb
+  chart:
+    spec:
+      chart: mariadb
+      sourceRef:
+        kind: HelmRepository
+        name: mmontes
+        namespace: flux-system
+  interval: 5m
+  values:
+    image:
+      repository: mariadb
+      tag: "10.7.3"
+      pullPolicy: IfNotPresent
+
+    storage:
+      size: 4Gi
+      className: local-path
+      accessModes:
+        - "ReadWriteOnce"
+
+    secretRef:
+      name: photoprism-xiaowen-mariadb
+
+    resources:
+      requests:
+        cpu: 200m
+        memory: 200Mi
+      limits:
+        cpu: 500m
+        memory: 500Mi
+
+    nodeSelector:
+      node.mmontes.io/type: compute
