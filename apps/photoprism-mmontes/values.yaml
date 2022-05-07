@@ -1,0 +1,84 @@
+image:
+  repository: photoprism/photoprism
+  tag: "220302-bullseye"
+  pullPolicy: IfNotPresent
+
+env:
+  PHOTOPRISM_AUTH: true
+  PHOTOPRISM_HTTP_COMPRESSION: "gzip"
+  PHOTOPRISM_LOG_LEVEL: info
+  PHOTOPRISM_READONLY: true
+  PHOTOPRISM_SITE_AUTHOR: "mmontes"
+  PHOTOPRISM_SITE_CAPTION: "mmontes media center"
+  PHOTOPRISM_SITE_DESCRIPTION: "mmontes media center"
+
+secretRef:
+  name: photoprism-mmontes
+
+persistence:
+  enabled: true
+
+  nas: &nas nas
+  originalsPath: &originalsPath /photoprism/originals
+  importPath: &importPath /photoprism/import
+  storagePath: &storagePath /photoprism/storage
+
+  volumes:
+    - name: originals
+      nfs:
+        server: *nas
+        path: /photoprism/mmontes/originals
+    - name: import
+      nfs:
+        server: *nas
+        path: /photoprism/mmontes/import
+    - name: storage
+      nfs:
+        server: *nas
+        path: /photoprism/mmontes/storage
+
+  volumeMounts:
+    - name: originals
+      mountPath: *originalsPath
+    - name: import
+      mountPath: *importPath
+    - name: storage
+      mountPath: *storagePath
+
+database:
+  driver: mysql
+  host: photoprism-mmontes-mariadb:3306
+
+sync:
+  enabled: true
+  cron: "0 3 * * *"
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+    limits:
+      memory: 4Gi
+      cpu: 2
+  nodeSelector:
+    node.mmontes.io/type: compute
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingressRoute:
+  enabled: true
+  host: media.mmontes-dev.duckdns.org
+  entryPoints:
+    - websecure
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 250m
+  limits:
+    memory: 512Mi
+    cpu: 1
+
+nodeSelector:
+  node.mmontes.io/type: compute

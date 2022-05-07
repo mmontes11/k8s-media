@@ -1,0 +1,84 @@
+image:
+  repository: photoprism/photoprism
+  tag: "220302-bullseye"
+  pullPolicy: IfNotPresent
+
+env:
+  PHOTOPRISM_AUTH: true
+  PHOTOPRISM_HTTP_COMPRESSION: "gzip"
+  PHOTOPRISM_LOG_LEVEL: info
+  PHOTOPRISM_READONLY: true
+  PHOTOPRISM_SITE_AUTHOR: "mmontes"
+  PHOTOPRISM_SITE_CAPTION: "Champi"
+  PHOTOPRISM_SITE_DESCRIPTION: "Champi"
+
+secretRef:
+  name: photoprism-xiaowen
+
+persistence:
+  enabled: true
+
+  nas: &nas nas
+  originalsPath: &originalsPath /photoprism/originals
+  importPath: &importPath /photoprism/import
+  storagePath: &storagePath /photoprism/storage
+
+  volumes:
+    - name: originals
+      nfs:
+        server: *nas
+        path: /photoprism/xiaowen/originals
+    - name: import
+      nfs:
+        server: *nas
+        path: /photoprism/xiaowen/import
+    - name: storage
+      nfs:
+        server: *nas
+        path: /photoprism/xiaowen/storage
+
+  volumeMounts:
+    - name: originals
+      mountPath: *originalsPath
+    - name: import
+      mountPath: *importPath
+    - name: storage
+      mountPath: *storagePath
+
+database:
+  driver: mysql
+  host: photoprism-xiaowen-mariadb:3306
+
+sync:
+  enabled: true
+  cron: "0 4,16 * * *"
+  resources:
+    requests:
+      memory: 512Mi
+      cpu: 500m
+    limits:
+      memory: 4Gi
+      cpu: 2
+  nodeSelector:
+    node.mmontes.io/type: compute
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingressRoute:
+  enabled: true
+  host: xiaomedia.mmontes-dev.duckdns.org
+  entryPoints:
+    - websecure
+
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 250m
+  limits:
+    memory: 512Mi
+    cpu: 1
+
+nodeSelector:
+  node.mmontes.io/type: compute
