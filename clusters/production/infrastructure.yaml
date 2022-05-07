@@ -7,7 +7,7 @@ spec:
   interval: 5m
   sourceRef:
     kind: GitRepository
-    name: flux-tenant-iot
+    name: flux-tenant-media
     namespace: flux-system
   path: ./infrastructure/photoprism-mmontes-mariadb
   prune: true
@@ -22,7 +22,7 @@ spec:
   interval: 5m
   sourceRef:
     kind: GitRepository
-    name: flux-tenant-iot
+    name: flux-tenant-media
     namespace: flux-system
   path: ./infrastructure/photoprism-xiaowen-mariadb
   prune: true
