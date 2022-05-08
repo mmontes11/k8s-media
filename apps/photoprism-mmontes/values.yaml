@@ -51,7 +51,7 @@ database:
 
 sync:
   enabled: true
-  cron: "0 3 * * *"
+  cron: "0 2 * * *"
   resources:
     requests:
       memory: 512Mi
