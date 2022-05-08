@@ -54,11 +54,11 @@ sync:
   cron: "0 3,15 * * *"
   resources:
     requests:
-      memory: 512Mi
-      cpu: 500m
+      memory: 1Gi
+      cpu: 1
     limits:
       memory: 4Gi
-      cpu: 2
+      cpu: 4
   nodeSelector:
     node.mmontes.io/type: compute
 
@@ -74,11 +74,11 @@ ingressRoute:
 
 resources:
   requests:
-    memory: 500Mi
-    cpu: 500m
+    memory: 300Mi
+    cpu: 300m
   limits:
-    memory: 4Gi
-    cpu: 2
+    memory: 2Gi
+    cpu: 1
 
 nodeSelector:
   node.mmontes.io/type: compute
