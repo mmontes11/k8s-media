@@ -54,8 +54,8 @@ sync:
   cron: "0 2 * * *"
   resources:
     requests:
-      memory: 500Mi
-      cpu: 500m
+      memory: 300Mi
+      cpu: 300m
     limits:
       memory: 2Gi
       cpu: 1
@@ -74,10 +74,10 @@ ingressRoute:
 
 resources:
   requests:
-    memory: 200Mi
-    cpu: 200m
+    memory: 300Mi
+    cpu: 300m
   limits:
-    memory: 1Gi
+    memory: 2Gi
     cpu: 1
 
 nodeSelector:

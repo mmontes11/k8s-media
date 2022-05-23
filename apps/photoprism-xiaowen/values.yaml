@@ -51,14 +51,14 @@ database:
 
 sync:
   enabled: true
-  cron: "0 3,15 * * *"
+  cron: "0 4,16 * * *"
   resources:
     requests:
-      memory: 1Gi
-      cpu: 1
+      memory: 300Mi
+      cpu: 300m
     limits:
       memory: 2Gi
-      cpu: 2
+      cpu: 1
   nodeSelector:
     node.mmontes.io/type: compute
 
@@ -78,7 +78,7 @@ resources:
     cpu: 300m
   limits:
     memory: 2Gi
-    cpu: 2
+    cpu: 1
 
 nodeSelector:
   node.mmontes.io/type: compute
