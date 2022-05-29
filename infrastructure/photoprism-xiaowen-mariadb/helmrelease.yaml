@@ -30,11 +30,11 @@ spec:
 
     resources:
       requests:
-        cpu: 200m
-        memory: 200Mi
+        cpu: 100m
+        memory: 100Mi
       limits:
-        cpu: 600m
-        memory: 600Mi
+        cpu: 500m
+        memory: 500Mi
 
     nodeSelector:
       node.mmontes.io/type: compute
