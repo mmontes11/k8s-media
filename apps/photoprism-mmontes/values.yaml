@@ -57,10 +57,19 @@ sync:
       memory: 300Mi
       cpu: 300m
     limits:
-      memory: 1Gi
-      cpu: 500m
-  nodeSelector:
-    node.mmontes.io/type: compute
+      memory: 2Gi
+      cpu: 1
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node-role.kubernetes.io/master
+                operator: DoesNotExist
+              - key: node.mmontes.io/type
+                operator: In
+                values:
+                  - compute
 
 service:
   type: ClusterIP
