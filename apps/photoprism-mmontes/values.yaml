@@ -57,7 +57,7 @@ sync:
       memory: 300Mi
       cpu: 300m
     limits:
-      memory: 1.5Gi
+      memory: 2Gi
       cpu: 700m
   affinity:
     nodeAffinity:
@@ -86,7 +86,7 @@ resources:
     memory: 300Mi
     cpu: 300m
   limits:
-    memory: 1.5Gi
+    memory: 2Gi
     cpu: 700m
 
 nodeSelector:
