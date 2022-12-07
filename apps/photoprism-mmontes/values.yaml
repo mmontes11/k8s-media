@@ -1,6 +1,6 @@
 image:
   repository: photoprism/photoprism
-  tag: "220302-bullseye"
+  tag: "221118-jammy"
   pullPolicy: IfNotPresent
 
 env:
@@ -59,27 +59,17 @@ sync:
     limits:
       memory: 1.7Gi
       cpu: 700m
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: node-role.kubernetes.io/master
-                operator: DoesNotExist
-              - key: node.mmontes.io/type
-                operator: In
-                values:
-                  - compute
 
 service:
   type: ClusterIP
   port: 80
 
-ingressRoute:
+httpRoute:
   enabled: true
-  host: media.mmontes-dev.duckdns.org
-  entryPoints:
-    - websecure
+  host: media.mmontes.duckdns.org
+  gatewayRef:
+    name: traefik
+    namespace: networking
 
 resources:
   requests:
@@ -88,6 +78,3 @@ resources:
   limits:
     memory: 1.7Gi
     cpu: 700m
-
-nodeSelector:
-  node.mmontes.io/type: compute
