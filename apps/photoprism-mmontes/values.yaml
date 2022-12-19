@@ -57,8 +57,8 @@ sync:
       memory: 300Mi
       cpu: 300m
     limits:
-      memory: 1.7Gi
-      cpu: 700m
+      memory: 2Gi
+      cpu: 2
 
 service:
   type: ClusterIP
@@ -76,5 +76,5 @@ resources:
     memory: 300Mi
     cpu: 300m
   limits:
-    memory: 1.7Gi
-    cpu: 700m
+    memory: 2Gi
+    cpu: 2
