@@ -66,9 +66,9 @@ service:
 
 httpRoute:
   enabled: true
-  host: media.mmontes.duckdns.org
+  host: media.internal.mmontes.duckdns.org
   gatewayRef:
-    name: traefik
+    name: traefik-internal
     namespace: networking
 
 resources:
