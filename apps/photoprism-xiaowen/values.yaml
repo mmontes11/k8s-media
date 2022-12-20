@@ -54,11 +54,10 @@ sync:
   cron: "0 4,16 * * *"
   resources:
     requests:
-      memory: 300Mi
-      cpu: 300m
+      memory: 2Gi
+      cpu: 500m
     limits:
       memory: 2Gi
-      cpu: 1
 
 service:
   type: ClusterIP
@@ -76,5 +75,4 @@ resources:
     memory: 300Mi
     cpu: 300m
   limits:
-    memory: 2Gi
-    cpu: 1
+    memory: 1.5Gi
