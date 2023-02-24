@@ -28,6 +28,7 @@ persistence:
       nfs:
         server: *nas
         path: /volume1/homes/xiaowen
+        readOnly: true
     - name: import
       nfs:
         server: *nas
@@ -40,6 +41,7 @@ persistence:
   volumeMounts:
     - name: originals
       mountPath: *originalsPath
+      readOnly: true
     - name: import
       mountPath: *importPath
     - name: storage
@@ -47,7 +49,9 @@ persistence:
 
 database:
   driver: mysql
-  host: photoprism-xiaowen-mariadb:3306
+  dsnSecretKeyRef:
+    name: photoprism-xiaowen-dsn
+    key: dsn
 
 sync:
   enabled: true
