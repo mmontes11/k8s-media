@@ -59,9 +59,10 @@ sync:
   resources:
     requests:
       memory: 2Gi
-      cpu: 500m
+      cpu: 300m
     limits:
       memory: 2Gi
+      cpu: 900m
 
 service:
   type: ClusterIP
