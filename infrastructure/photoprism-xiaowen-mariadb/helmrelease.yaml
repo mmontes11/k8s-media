@@ -33,5 +33,4 @@ spec:
         cpu: 300m
         memory: 500Mi
       limits:
-        cpu: 300m
         memory: 500Mi
