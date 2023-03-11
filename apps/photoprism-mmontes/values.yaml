@@ -80,3 +80,7 @@ resources:
     memory: 1.5Gi
   limits:
     memory: 1.5Gi
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1

@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.2.0"
+      version: "0.3.0"
   interval: 5m
   values:
     image:
@@ -34,3 +34,7 @@ spec:
         memory: 500Mi
       limits:
         memory: 500Mi
+
+    podDisruptionBudget:
+      enabled: true
+      minAvailable: 1
