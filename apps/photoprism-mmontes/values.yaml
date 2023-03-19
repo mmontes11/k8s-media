@@ -61,7 +61,7 @@ sync:
       cpu: 300m
       memory: 500Mi
     limits:
-      memory: 1.5Gi
+      memory: 1.7Gi
 
 service:
   type: ClusterIP
@@ -79,7 +79,7 @@ resources:
     cpu: 300m
     memory: 500Mi
   limits:
-    memory: 1.5Gi
+    memory: 1.7Gi
 
 podDisruptionBudget:
   enabled: true
