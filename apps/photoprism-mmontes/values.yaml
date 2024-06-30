@@ -62,6 +62,8 @@ sync:
       memory: 2Gi
     limits:
       memory: 2Gi
+  nodeSelector:
+    node.mmontes.io/type: compute
 
 service:
   type: ClusterIP
@@ -80,6 +82,9 @@ resources:
     memory: 500Mi
   limits:
     memory: 2Gi
+
+nodeSelector:
+  node.mmontes.io/type: compute
 
 podDisruptionBudget:
   enabled: true

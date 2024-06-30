@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: media
 resources:
   - helmrelease.yaml
-  - photoprism-mmontes-sealedsecret.yaml
+  - sealedsecret.yaml
 configMapGenerator:
   - name: photoprism-mmontes
     files:
