@@ -6,7 +6,7 @@ spec:
   mariaDbRef:
     name: mariadb-mmontes
   schedule:
-    cron: "0 3 * * *"
+    cron: "0 2 * * *"
     suspend: false
   maxRetention: 168h # 7 days
   storage:
