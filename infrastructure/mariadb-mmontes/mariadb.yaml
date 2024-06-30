@@ -39,7 +39,10 @@ spec:
       memory: 1024Mi
 
   nodeSelector:
-    node.mmontes.io/type: compute   
+    node.mmontes.io/type: compute
+
+  podDisruptionBudget:
+    minAvailable: 1
 
   connection:
     secretName: connection-mmontes

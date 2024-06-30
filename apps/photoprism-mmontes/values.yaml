@@ -1,6 +1,6 @@
 image:
   repository: photoprism/photoprism
-  tag: "230514"
+  tag: "240531"
   pullPolicy: IfNotPresent
 
 env:
@@ -18,7 +18,7 @@ secretRef:
 persistence:
   enabled: true
 
-  nas: &nas nas.local
+  nas: &nas 10.0.0.50
   originalsPath: &originalsPath /photoprism/originals
   importPath: &importPath /photoprism/import
   storagePath: &storagePath /photoprism/storage
@@ -50,7 +50,7 @@ persistence:
 database:
   driver: mysql
   dsnSecretKeyRef:
-    name: photoprism-mmontes-dsn
+    name: connection-mmontes
     key: dsn
 
 sync:
@@ -59,9 +59,9 @@ sync:
   resources:
     requests:
       cpu: 300m
-      memory: 500Mi
+      memory: 2Gi
     limits:
-      memory: 1.7Gi
+      memory: 2Gi
 
 service:
   type: ClusterIP
@@ -69,7 +69,7 @@ service:
 
 httpRoute:
   enabled: true
-  host: media.internal.mmontes.duckdns.org
+  host: media.mmontes-internal.duckdns.org
   gatewayRef:
     name: traefik-internal
     namespace: networking
@@ -79,7 +79,7 @@ resources:
     cpu: 300m
     memory: 500Mi
   limits:
-    memory: 1.7Gi
+    memory: 2Gi
 
 podDisruptionBudget:
   enabled: true
