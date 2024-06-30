@@ -11,6 +11,8 @@ env:
   PHOTOPRISM_SITE_AUTHOR: "mmontes"
   PHOTOPRISM_SITE_CAPTION: "mmontes media center"
   PHOTOPRISM_SITE_DESCRIPTION: "mmontes media center"
+  PHOTOPRISM_BACKUP_DATABASE: false
+  PHOTOPRISM_INDEX_SCHEDULE: ""
 
 secretRef:
   name: photoprism-mmontes
@@ -55,7 +57,7 @@ database:
 
 sync:
   enabled: true
-  cron: "0 2 * * *"
+  cron: "0 */3 * * *"
   resources:
     requests:
       cpu: 300m
