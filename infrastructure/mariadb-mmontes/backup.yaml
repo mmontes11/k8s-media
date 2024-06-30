@@ -1,0 +1,24 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: backup-mmontes
+spec:
+  mariaDbRef:
+    name: mariadb-mmontes
+  schedule:
+    cron: "0 3 * * *"
+    suspend: false
+  maxRetention: 168h # 7 days
+  storage:
+    volume:
+      nfs:
+        server: 10.0.0.50
+        path: /volume1/photoprism/mmontes/backup
+  logLevel: info
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 512Mi
