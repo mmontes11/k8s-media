@@ -60,12 +60,10 @@ sync:
   cron: "0 */3 * * *"
   resources:
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 1
+      memory: 1Gi
     limits:
-      memory: 2Gi
-  nodeSelector:
-    node.mmontes.io/type: compute
+      memory: 4Gi
 
 service:
   type: ClusterIP
@@ -80,7 +78,7 @@ httpRoute:
 
 resources:
   requests:
-    cpu: 300m
+    cpu: 500m
     memory: 500Mi
   limits:
     memory: 2Gi
