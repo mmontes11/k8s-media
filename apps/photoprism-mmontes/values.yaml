@@ -63,7 +63,7 @@ sync:
       cpu: 1
       memory: 1Gi
     limits:
-      memory: 4Gi
+      memory: 2Gi
 
 service:
   type: ClusterIP
@@ -78,7 +78,7 @@ httpRoute:
 
 resources:
   requests:
-    cpu: 1
+    cpu: 500m
     memory: 500Mi
   limits:
     memory: 2Gi
