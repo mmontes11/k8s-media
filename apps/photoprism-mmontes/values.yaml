@@ -78,7 +78,7 @@ httpRoute:
 
 resources:
   requests:
-    cpu: 500m
+    cpu: 1
     memory: 500Mi
   limits:
     memory: 2Gi
