@@ -85,7 +85,3 @@ resources:
 
 nodeSelector:
   node.mmontes.io/type: compute
-
-podDisruptionBudget:
-  enabled: true
-  minAvailable: 1

@@ -28,21 +28,18 @@ spec:
     default_storage_engine=InnoDB
     binlog_format=row
     innodb_autoinc_lock_mode=2
-    innodb_buffer_pool_size=1024M
+    innodb_buffer_pool_size=1024G
     max_allowed_packet=256M
 
   resources:
     requests:
       cpu: 300m
-      memory: 1024Mi
+      memory: 1Gi
     limits:
-      memory: 1024Mi
+      memory: 1Gi
 
   nodeSelector:
     node.mmontes.io/type: compute
-
-  podDisruptionBudget:
-    minAvailable: 1
 
   connection:
     secretName: connection-mmontes
