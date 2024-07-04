@@ -69,7 +69,7 @@ sync:
 
 videoTranscoding:
   enabled: true
-  device: "/dev/video11"
+  device: "/dev/video20"
 
 service:
   type: ClusterIP
