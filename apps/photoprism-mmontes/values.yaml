@@ -61,7 +61,7 @@ sync:
   resources:
     requests:
       cpu: 1
-      memory: 1Gi
+      memory: 2Gi
     limits:
       memory: 2Gi
 
@@ -78,10 +78,8 @@ httpRoute:
 
 resources:
   requests:
-    cpu: 500m
-    memory: 500Mi
-  limits:
-    memory: 2Gi
+    cpu: 1
+    memory: 1Gi
 
 nodeSelector:
   node.mmontes.io/type: compute
