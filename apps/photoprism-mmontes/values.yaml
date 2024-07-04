@@ -6,15 +6,13 @@ image:
 env:
   PHOTOPRISM_AUTH: true
   PHOTOPRISM_HTTP_COMPRESSION: "gzip"
-  PHOTOPRISM_LOG_LEVEL: debug
+  PHOTOPRISM_LOG_LEVEL: info
   PHOTOPRISM_READONLY: true
-  PHOTOPRISM_SITE_AUTHOR: "mmontes"
-  PHOTOPRISM_SITE_CAPTION: "mmontes media center"
-  PHOTOPRISM_SITE_DESCRIPTION: "mmontes media center"
+  PHOTOPRISM_SITE_AUTHOR: "Martin Montes"
+  PHOTOPRISM_SITE_CAPTION: "Media Center"
+  PHOTOPRISM_SITE_DESCRIPTION: "Media center"
   PHOTOPRISM_BACKUP_DATABASE: false
   PHOTOPRISM_INDEX_SCHEDULE: ""
-  PHOTOPRISM_FFMPEG_ENCODER: "raspberry"
-  PHOTOPRISM_FFMPEG_BUFFERS: "64"
 
 secretRef:
   name: photoprism-mmontes
@@ -68,8 +66,7 @@ sync:
       memory: 2Gi
 
 videoTranscoding:
-  enabled: true
-  device: "/dev/video20"
+  enabled: false
 
 service:
   type: ClusterIP
