@@ -67,6 +67,10 @@ sync:
     limits:
       memory: 2Gi
 
+videoTranscoding:
+  enabled: true
+  device: "/dev/video11"
+
 service:
   type: ClusterIP
   port: 80
