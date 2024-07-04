@@ -13,6 +13,8 @@ env:
   PHOTOPRISM_SITE_DESCRIPTION: "mmontes media center"
   PHOTOPRISM_BACKUP_DATABASE: false
   PHOTOPRISM_INDEX_SCHEDULE: ""
+  PHOTOPRISM_FFMPEG_ENCODER: "raspberry"
+  PHOTOPRISM_FFMPEG_BUFFERS: "64"
 
 secretRef:
   name: photoprism-mmontes
