@@ -1,0 +1,56 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: mariadb-xiaowen
+spec:
+  rootPasswordSecretKeyRef:
+    name: mariadb-xiaowen
+    key: password
+    generate: false
+
+  username: xiaowen
+  passwordSecretKeyRef:
+    name: mariadb-xiaowen
+    key: password
+  database: photoprism
+
+  image: mariadb:10.11.8
+
+  replicas: 3
+
+  galera:
+    enabled: true
+
+  storage:
+    size: 10Gi
+
+  metrics:
+    enabled: true
+
+  updateStrategy:
+    type: ReplicasFirstPrimaryLast
+
+  myCnf: |
+    [mariadb]
+    bind-address=*
+    default_storage_engine=InnoDB
+    binlog_format=row
+    innodb_autoinc_lock_mode=2
+    innodb_buffer_pool_size=2G
+    max_allowed_packet=256M
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2Gi
+    limits:
+      memory: 2Gi
+
+  nodeSelector:
+    node.mmontes.io/type: compute
+
+  affinity:
+    antiAffinityEnabled: true
+
+  podDisruptionBudget:
+    maxUnavailable: 66%
