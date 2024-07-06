@@ -65,6 +65,8 @@ sync:
       memory: 2Gi
     limits:
       memory: 4Gi
+  nodeSelector:
+    node.mmontes.io/type: compute
 
 videoTranscoding:
   enabled: false
