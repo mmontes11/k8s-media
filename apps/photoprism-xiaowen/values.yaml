@@ -5,12 +5,15 @@ image:
 
 env:
   PHOTOPRISM_AUTH: true
+  PHOTOPRISM_ADMIN_USER: xiaowen
   PHOTOPRISM_HTTP_COMPRESSION: "gzip"
   PHOTOPRISM_LOG_LEVEL: info
   PHOTOPRISM_READONLY: true
-  PHOTOPRISM_SITE_AUTHOR: "mmontes"
+  PHOTOPRISM_SITE_AUTHOR: "Xiaowen"
   PHOTOPRISM_SITE_CAPTION: "Champi"
   PHOTOPRISM_SITE_DESCRIPTION: "Champi"
+  PHOTOPRISM_BACKUP_DATABASE: false
+  PHOTOPRISM_INDEX_SCHEDULE: ""
 
 secretRef:
   name: photoprism-xiaowen
@@ -18,7 +21,7 @@ secretRef:
 persistence:
   enabled: true
 
-  nas: &nas nas.local
+  nas: &nas 10.0.0.50
   originalsPath: &originalsPath /photoprism/originals
   importPath: &importPath /photoprism/import
   storagePath: &storagePath /photoprism/storage
@@ -50,18 +53,21 @@ persistence:
 database:
   driver: mysql
   dsnSecretKeyRef:
-    name: photoprism-xiaowen-dsn
+    name: connection-xiaowen
     key: dsn
 
 sync:
   enabled: true
-  cron: "0 4,16 * * *"
+  cron: "0 */3 * * *"
   resources:
     requests:
-      cpu: 300m
-      memory: 500Mi
+      cpu: 1
+      memory: 2Gi
     limits:
-      memory: 1.7Gi
+      memory: 4Gi
+
+videoTranscoding:
+  enabled: false
 
 service:
   type: ClusterIP
@@ -69,18 +75,17 @@ service:
 
 httpRoute:
   enabled: true
-  host: xiaomedia.internal.mmontes.duckdns.org
+  host: xiaomedia.mmontes-internal.duckdns.org
   gatewayRef:
     name: traefik-internal
     namespace: networking
 
 resources:
   requests:
-    cpu: 300m
-    memory: 500Mi
+    cpu: 1
+    memory: 1Gi
   limits:
-    memory: 1.7Gi
+    memory: 4Gi
 
-podDisruptionBudget:
-  enabled: true
-  minAvailable: 1
+nodeSelector:
+  node.mmontes.io/type: compute
