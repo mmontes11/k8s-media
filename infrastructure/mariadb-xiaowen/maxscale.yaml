@@ -17,6 +17,9 @@ spec:
       name: mariadb-xiaowen
       key: password
 
+  metrics:
+    enabled: true
+
   resources:
     requests:
       cpu: 500m
