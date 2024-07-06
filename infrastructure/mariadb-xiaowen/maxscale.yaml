@@ -26,11 +26,3 @@ spec:
 
   nodeSelector:
     node.mmontes.io/type: compute
-
-  connection:
-    secretName: connection-xiaowen
-    port: 3306
-    secretTemplate:
-      key: dsn
-    params:
-      parseTime: "true"
