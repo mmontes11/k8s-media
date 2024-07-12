@@ -18,6 +18,9 @@ spec:
 
   replicas: 3
 
+  maxScaleRef:
+    name: maxscale-xiaowen
+
   galera:
     enabled: true
 
