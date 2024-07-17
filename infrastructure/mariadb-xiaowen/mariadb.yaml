@@ -43,12 +43,12 @@ spec:
     max_allowed_packet=256M
 
   livenessProbe:
-    initialDelaySeconds: 20
+    initialDelaySeconds: 30
     periodSeconds: 30
     timeoutSeconds: 5
 
   readinessProbe:
-    initialDelaySeconds: 20
+    initialDelaySeconds: 30
     periodSeconds: 30
     timeoutSeconds: 5
 
