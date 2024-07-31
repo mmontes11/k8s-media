@@ -7,7 +7,7 @@ spec:
     name: mariadb-xiaowen
   schedule:
     cron: "0 3 * * *"
-    suspend: true
+    suspend: false
   maxRetention: 168h # 7 days
   storage:
     volume:
