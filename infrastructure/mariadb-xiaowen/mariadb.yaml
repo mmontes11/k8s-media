@@ -23,9 +23,6 @@ spec:
 
   galera:
     enabled: true
-    recovery:
-      enabled: true
-      forceClusterBootstrapInPod: mariadb-xiaowen-0
     initContainer:
       image: mariadbmmontes/mariadb-operator:v0.0.30-dev
     agent:
