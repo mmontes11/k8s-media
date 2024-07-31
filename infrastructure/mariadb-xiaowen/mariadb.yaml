@@ -23,6 +23,10 @@ spec:
 
   galera:
     enabled: true
+    initContainer:
+      image: mariadbmmontes/mariadb-operator:v0.0.30-dev
+    agent:
+      image: mariadbmmontes/mariadb-operator:v0.0.30-dev
 
   storage:
     size: 10Gi
