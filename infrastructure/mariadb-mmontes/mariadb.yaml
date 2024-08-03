@@ -31,6 +31,8 @@ spec:
     innodb_buffer_pool_size=800MB
     max_allowed_packet=256M
 
+  priorityClassName: system-node-critical
+
   resources:
     requests:
       cpu: 500m
