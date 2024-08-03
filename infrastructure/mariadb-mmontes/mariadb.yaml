@@ -19,6 +19,21 @@ spec:
   storage:
     size: 4Gi
 
+  bootstrapFrom:
+    volume:
+      nfs:
+        server: 10.0.0.50
+        path: /volume1/photoprism/mmontes/backup
+    restoreJob:
+      args:
+        - "--verbose"
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          memory: 1Gi
+
   metrics:
     enabled: true
 
