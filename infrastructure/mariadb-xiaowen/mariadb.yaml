@@ -37,7 +37,6 @@ spec:
           limits:
             memory: 128Mi
 
-
   storage:
     size: 10Gi
 
