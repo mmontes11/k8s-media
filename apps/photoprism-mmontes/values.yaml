@@ -88,3 +88,5 @@ resources:
 
 nodeSelector:
   node.mmontes.io/type: compute
+
+priorityClassName: system-node-critical
