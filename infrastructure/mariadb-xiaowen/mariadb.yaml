@@ -30,7 +30,7 @@ spec:
     recovery:
       enabled: true
       job:
-        resource:
+        resources:
           requests:
             cpu: 50m
             memory: 64Mi
