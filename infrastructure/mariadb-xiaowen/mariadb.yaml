@@ -27,6 +27,16 @@ spec:
       image: mariadbmmontes/mariadb-operator:v0.0.30-dev
     agent:
       image: mariadbmmontes/mariadb-operator:v0.0.30-dev
+    recovery:
+      enabled: true
+      job:
+        resource:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            memory: 128Mi
+
 
   storage:
     size: 10Gi
