@@ -7,8 +7,8 @@ spec:
     name: mariadb-mmontes
   schedule:
     cron: "0 2 * * *"
-    suspend: false
-  maxRetention: 168h # 7 days
+    suspend: true
+  maxRetention: 730h # 1 month
   storage:
     volume:
       nfs:
