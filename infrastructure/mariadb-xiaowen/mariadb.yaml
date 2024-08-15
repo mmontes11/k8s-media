@@ -24,10 +24,10 @@ spec:
   galera:
     enabled: true
     initContainer:
-      image: mariadbmmontes/mariadb-operator:v0.0.30-dev
+      image: mariadbmmontes/mariadb-operator:v0.0.30
       imagePullPolicy: Always
     agent:
-      image: mariadbmmontes/mariadb-operator:v0.0.30-dev
+      image: mariadbmmontes/mariadb-operator:v0.0.30
       imagePullPolicy: Always
 
   storage:
