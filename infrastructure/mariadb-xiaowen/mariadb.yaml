@@ -25,17 +25,10 @@ spec:
     enabled: true
     initContainer:
       image: mariadbmmontes/mariadb-operator:v0.0.30-dev
+      imagePullPolicy: Always
     agent:
       image: mariadbmmontes/mariadb-operator:v0.0.30-dev
-    recovery:
-      enabled: true
-      job:
-        resources:
-          requests:
-            cpu: 50m
-            memory: 64Mi
-          limits:
-            memory: 128Mi
+      imagePullPolicy: Always
 
   storage:
     size: 10Gi
