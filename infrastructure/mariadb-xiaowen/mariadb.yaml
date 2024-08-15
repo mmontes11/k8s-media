@@ -30,6 +30,21 @@ spec:
       image: mariadbmmontes/mariadb-operator:v0.0.30
       imagePullPolicy: Always
 
+  # bootstrapFrom:
+  #   volume:
+  #     nfs:
+  #       server: 10.0.0.50
+  #       path: /volume1/photoprism/xiaowen/backup
+  #   restoreJob:
+  #     args:
+  #       - "--verbose"
+  #     resources:
+  #       requests:
+  #         cpu: 100m
+  #         memory: 128Mi
+  #       limits:
+  #         memory: 1Gi
+
   storage:
     size: 10Gi
 
