@@ -61,7 +61,7 @@ spec:
     binlog_format=row
     innodb_autoinc_lock_mode=2
     innodb_buffer_pool_size=1600MB
-    max_allowed_packet=256M
+    max_allowed_packet=500M
 
   livenessProbe:
     initialDelaySeconds: 30
