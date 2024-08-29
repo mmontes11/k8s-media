@@ -23,22 +23,6 @@ spec:
 
   galera:
     enabled: true
-    initContainer:
-      image: docker-registry3.mariadb.com/mariadb-operator/mariadb-operator:v0.0.30
-      imagePullPolicy: Always
-    agent:
-      image: docker-registry3.mariadb.com/mariadb-operator/mariadb-operator:v0.0.30
-      imagePullPolicy: Always
-    recovery:
-      enabled: true
-      minClusterSize: 1
-      podRecoveryTimeout: 5m   
-      podSyncTimeout: 5m
-      job:
-        metadata:
-          labels:
-            sidecar.istio.io/inject: "false"
-
 
   # bootstrapFrom:
   #   volume:
