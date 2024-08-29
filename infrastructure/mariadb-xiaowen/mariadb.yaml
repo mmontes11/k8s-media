@@ -34,10 +34,10 @@ spec:
       minClusterSize: 1
       podRecoveryTimeout: 5m   
       podSyncTimeout: 5m
-    job:
-      metadata:
-        labels:
-          sidecar.istio.io/inject: "false"
+      job:
+        metadata:
+          labels:
+            sidecar.istio.io/inject: "false"
 
 
   # bootstrapFrom:
