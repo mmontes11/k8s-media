@@ -36,9 +36,6 @@ persistence:
         server: *nas
         path: /volume1/photoprism/mmontes/import
     - name: storage
-      persistentVolumeClaim:
-        claimName: fs-mmontes
-    - name: storage-nfs
       nfs:
         server: *nas
         path: /volume1/photoprism/mmontes/storage
@@ -51,8 +48,6 @@ persistence:
       mountPath: *importPath
     - name: storage
       mountPath: *storagePath
-    - name: storage-nfs
-      mountPath: /photoprism/storage-nfs
 
 database:
   driver: mysql
