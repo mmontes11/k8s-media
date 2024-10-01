@@ -16,23 +16,24 @@ spec:
 
   image: mariadb:10.11.8
 
-  # bootstrapFrom:
-  #   volume:
-  #     nfs:
-  #       server: 10.0.0.50
-  #       path: /volume1/photoprism/mmontes/backup
-  #   restoreJob:
-  #     args:
-  #       - "--verbose"
-  #     resources:
-  #       requests:
-  #         cpu: 100m
-  #         memory: 128Mi
-  #       limits:
-  #         memory: 1Gi
+  bootstrapFrom:
+    volume:
+      nfs:
+        server: 10.0.0.50
+        path: /volume1/photoprism/mmontes/backup
+    restoreJob:
+      args:
+        - "--verbose"
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          memory: 1Gi
 
   storage:
     size: 4Gi
+    storageClassName: rook-ceph
 
   metrics:
     enabled: true
@@ -45,8 +46,6 @@ spec:
     innodb_autoinc_lock_mode=2
     innodb_buffer_pool_size=800MB
     max_allowed_packet=300M
-
-  priorityClassName: system-node-critical
 
   resources:
     requests:

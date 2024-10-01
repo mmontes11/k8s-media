@@ -67,8 +67,6 @@ spec:
     periodSeconds: 30
     timeoutSeconds: 5
 
-  priorityClassName: system-node-critical
-
   resources:
     requests:
       cpu: 500m

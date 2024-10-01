@@ -20,8 +20,6 @@ spec:
   metrics:
     enabled: true
 
-  priorityClassName: system-node-critical
-
   resources:
     requests:
       cpu: 100m

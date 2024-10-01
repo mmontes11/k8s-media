@@ -36,9 +36,8 @@ persistence:
         server: *nas
         path: /volume1/photoprism/mmontes/import
     - name: storage
-      nfs:
-        server: *nas
-        path: /volume1/photoprism/mmontes/storage
+      persistentVolumeClaim:
+        claimName: fs-mmontes
 
   volumeMounts:
     - name: originals
@@ -88,5 +87,3 @@ resources:
 
 nodeSelector:
   node.mmontes.io/type: compute
-
-priorityClassName: system-node-critical
