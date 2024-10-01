@@ -57,13 +57,15 @@ database:
 
 sync:
   enabled: true
-  cron: "0 */1 * * *"
+  cron: "0 */3 * * *"
   resources:
     requests:
       cpu: 1
-      memory: 2Gi
+      memory: 4Gi
     limits:
-      memory: 2Gi
+      memory: 4Gi
+  nodeSelector:
+    node.mmontes.io/type: compute
 
 videoTranscoding:
   enabled: false
@@ -82,9 +84,9 @@ httpRoute:
 resources:
   requests:
     cpu: 1
-    memory: 4Gi
+    memory: 2Gi
   limits:
-    memory: 4Gi
+    memory: 2Gi
 
 nodeSelector:
   node.mmontes.io/type: compute
