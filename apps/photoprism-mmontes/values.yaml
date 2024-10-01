@@ -63,6 +63,8 @@ sync:
       memory: 2Gi
     limits:
       memory: 2Gi
+  nodeSelector:
+    node.mmontes.io/type: compute
 
 videoTranscoding:
   enabled: false
@@ -81,7 +83,7 @@ httpRoute:
 resources:
   requests:
     cpu: 1
-    memory: 1Gi
+    memory: 2Gi
   limits:
     memory: 2Gi
 
