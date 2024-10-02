@@ -61,11 +61,9 @@ sync:
   resources:
     requests:
       cpu: 1
-      memory: 4Gi
+      memory: 2Gi
     limits:
-      memory: 4Gi
-  nodeSelector:
-    node.mmontes.io/type: compute
+      memory: 2Gi
 
 videoTranscoding:
   enabled: false
