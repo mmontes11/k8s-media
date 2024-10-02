@@ -6,6 +6,15 @@ spec:
   mariaDbRef:
     name: mariadb-xiaowen
 
+  config:
+    volumeClaimTemplate:
+      storageClassName: rook-ceph
+      resources:
+        requests:
+          storage: 100Mi
+      accessModes:
+        - ReadWriteOnce
+
   admin:
     port: 8989
     guiEnabled: true
