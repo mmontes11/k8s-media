@@ -35,6 +35,7 @@ persistence:
       nfs:
         server: *nas
         path: /volume1/photoprism/mmontes/import
+        readOnly: true
     - name: storage
       nfs:
         server: *nas
@@ -46,6 +47,7 @@ persistence:
       readOnly: true
     - name: import
       mountPath: *importPath
+      readOnly: true
     - name: storage
       mountPath: *storagePath
 
