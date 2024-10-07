@@ -40,7 +40,7 @@ spec:
 
   updateStrategy:
     type: ReplicasFirstPrimaryLast
-    autoUpdateDataPlane: true
+    # autoUpdateDataPlane: true
 
   myCnf: |
     [mariadb]
