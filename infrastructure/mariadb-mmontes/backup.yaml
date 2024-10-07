@@ -9,6 +9,7 @@ spec:
     cron: "0 2 * * *"
     suspend: false
   maxRetention: 730h # 1 month
+  compression: gzip
   storage:
     volume:
       nfs:
