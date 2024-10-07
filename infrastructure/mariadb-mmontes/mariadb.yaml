@@ -38,6 +38,10 @@ spec:
   metrics:
     enabled: true
 
+  updateStrategy:
+    type: ReplicasFirstPrimaryLast
+    autoUpdateDataPlane: true
+
   myCnf: |
     [mariadb]
     bind-address=*
