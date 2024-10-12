@@ -36,7 +36,7 @@ persistence:
         server: *nas
         path: /volume1/photoprism/mmontes/import
         readOnly: true
-    - name: backuo
+    - name: backup
       nfs:
         server: *nas
         path: /volume1/photoprism/mmontes/storage
