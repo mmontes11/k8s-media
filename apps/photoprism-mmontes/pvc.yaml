@@ -4,7 +4,7 @@ metadata:
   name: photoprism-mmontes
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 60Gi
