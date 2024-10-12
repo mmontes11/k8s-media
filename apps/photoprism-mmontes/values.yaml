@@ -40,6 +40,9 @@ persistence:
       nfs:
         server: *nas
         path: /volume1/photoprism/mmontes/storage
+    - name: storage-pvc
+      persistentVolumeClaim:
+        claimName: photoprism-mmontes
 
   volumeMounts:
     - name: originals
@@ -50,6 +53,8 @@ persistence:
       readOnly: true
     - name: storage
       mountPath: *storagePath
+    - name: storage-pvc
+      mountPath: /storage-pvc
 
 database:
   driver: mysql
