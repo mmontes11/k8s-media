@@ -37,12 +37,12 @@ persistence:
         path: /volume1/photoprism/mmontes/import
         readOnly: true
     - name: storage
+      nfs:
+        server: *nas
+        path: /volume1/photoprism/mmontes/storage
+    - name: backup
       persistentVolumeClaim:
         claimName: photoprism-mmontes
-    # - name: backup
-    #   nfs:
-    #     server: *nas
-    #     path: /volume1/photoprism/mmontes/storage
 
   volumeMounts:
     - name: originals
@@ -53,8 +53,8 @@ persistence:
       readOnly: true
     - name: storage
       mountPath: *storagePath
-    # - name: backup
-    #   mountPath: /backup
+    - name: backup
+      mountPath: /backup
 
 database:
   driver: mysql
