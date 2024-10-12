@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: photoprism-mmontes-storage-sync
 spec:
-  schedule: "0 */3 * * *"
+  schedule: "0 4 * * *"
   suspend: false
   successfulJobsHistoryLimit: 3
   concurrencyPolicy: Forbid
