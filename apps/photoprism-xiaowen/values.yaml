@@ -41,6 +41,9 @@ persistence:
       nfs:
         server: *nas
         path: /volume1/photoprism/xiaowen/storage
+    - name: storage-pvc
+      persistentVolumeClaim:
+        claimName: photoprism-xiaowen
 
   volumeMounts:
     - name: originals
@@ -51,6 +54,8 @@ persistence:
       readOnly: true
     - name: storage
       mountPath: *storagePath
+    - name: storage-pvc
+      mountPath: /storage-pvc
 
 database:
   driver: mysql

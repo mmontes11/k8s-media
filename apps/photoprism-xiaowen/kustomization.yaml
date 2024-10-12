@@ -4,6 +4,7 @@ namespace: media
 resources:
   - connection.yaml
   - helmrelease.yaml
+  - pvc.yaml
   - sealedsecret.yaml
 configMapGenerator:
   - name: photoprism-xiaowen
