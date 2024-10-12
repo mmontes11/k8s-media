@@ -53,8 +53,8 @@ persistence:
       readOnly: true
     - name: storage
       mountPath: *storagePath
-    - name: backup
-      mountPath: /backup
+    # - name: backup
+    #   mountPath: /backup
 
 database:
   driver: mysql
