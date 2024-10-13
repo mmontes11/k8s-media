@@ -17,7 +17,7 @@ spec:
         spec:
           containers:
           - name: storage-sync 
-            image: buddy/rsync:1.0
+            image: ghcr.io/mmontes11/rsync:v0.1.0
             imagePullPolicy: IfNotPresent
             command:
               - rsync
