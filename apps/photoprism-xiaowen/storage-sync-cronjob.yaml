@@ -20,7 +20,7 @@ spec:
             image: ghcr.io/mmontes11/rsync:v0.1.0
             imagePullPolicy: IfNotPresent
             args:
-              - -av
+              - -rlthv
               - --progress
               - /source
               - /destination
