@@ -22,9 +22,6 @@ persistence:
   enabled: true
 
   nas: &nas 10.0.0.50
-  originalsPath: &originalsPath /photoprism/originals
-  importPath: &importPath /photoprism/import
-  storagePath: &storagePath /photoprism/storage
 
   volumes:
     - name: originals
@@ -38,19 +35,18 @@ persistence:
         path: /volume1/photoprism/xiaowen/import
         readOnly: true
     - name: storage
-      nfs:
-        server: *nas
-        path: /volume1/photoprism/xiaowen/storage
+      persistentVolumeClaim:
+        claimName: photoprism-xiaowen
 
   volumeMounts:
     - name: originals
-      mountPath: *originalsPath
+      mountPath: /photoprism/originals
       readOnly: true
     - name: import
-      mountPath: *importPath
+      mountPath: /photoprism/import
       readOnly: true
     - name: storage
-      mountPath: *storagePath
+      mountPath: /photoprism/storage
 
 database:
   driver: mysql

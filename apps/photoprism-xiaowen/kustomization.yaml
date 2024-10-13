@@ -5,6 +5,8 @@ resources:
   - connection.yaml
   - helmrelease.yaml
   - sealedsecret.yaml
+  - storage-pvc.yaml
+  - storage-sync-cronjob.yaml
 configMapGenerator:
   - name: photoprism-xiaowen
     files:

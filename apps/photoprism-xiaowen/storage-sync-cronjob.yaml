@@ -1,0 +1,48 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: photoprism-xiaowen-storage-sync
+spec:
+  schedule: "0 5 * * *"
+  suspend: true
+  successfulJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 5
+      completions: 1
+      parallelism: 1
+      template:
+        spec:
+          containers:
+          - name: storage-sync 
+            image: buddy/rsync:1.0
+            imagePullPolicy: IfNotPresent
+            command:
+              - rsync
+              - -av
+              - --progress
+              - /source
+              - /destination
+            resources:
+              limits:
+                memory: 300Mi
+              requests:
+                cpu: "300m"
+                memory: 100Mi
+            volumeMounts:
+            - mountPath: /source
+              name: source
+            - mountPath: /destination
+              name: destination
+          restartPolicy: OnFailure
+          # TODO: switch over after sycing PVC
+          volumes:
+          - name: destination
+            persistentVolumeClaim:
+              claimName: photoprism-xiaowen
+          - name: source
+            nfs:
+              path: /volume1/photoprism/xiaowen/storage
+              server: 10.0.0.50
