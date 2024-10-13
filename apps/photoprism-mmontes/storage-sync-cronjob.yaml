@@ -25,11 +25,11 @@ spec:
               - /source
               - /destination
             resources:
-              limits:
-                memory: 300Mi
               requests:
-                cpu: "300m"
+                cpu: 300m
                 memory: 100Mi
+              limits:
+                memory: 1Gi
             volumeMounts:
             - mountPath: /source
               name: source
