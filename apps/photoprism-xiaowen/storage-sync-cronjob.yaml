@@ -36,12 +36,11 @@ spec:
             - mountPath: /destination
               name: destination
           restartPolicy: OnFailure
-          # TODO: switch over after sycing PVC
           volumes:
-          - name: destination
+          - name: source 
             persistentVolumeClaim:
               claimName: photoprism-xiaowen
-          - name: source
+          - name: destination
             nfs:
               path: /volume1/photoprism/xiaowen/storage
               server: 10.0.0.50

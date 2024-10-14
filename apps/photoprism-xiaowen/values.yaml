@@ -34,14 +34,9 @@ persistence:
         server: *nas
         path: /volume1/photoprism/xiaowen/import
         readOnly: true
-    # TODO: switch over after sycing PVC
-    # - name: storage
-    #   persistentVolumeClaim:
-    #     claimName: photoprism-xiaowen
     - name: storage
-      nfs:
-        path: /volume1/photoprism/xiaowen/storage
-        server: 10.0.0.50
+      persistentVolumeClaim:
+        claimName: photoprism-xiaowen
 
   volumeMounts:
     - name: originals
