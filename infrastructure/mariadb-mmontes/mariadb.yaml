@@ -40,9 +40,9 @@ spec:
 
   updateStrategy:
     type: ReplicasFirstPrimaryLast
-    # autoUpdateDataPlane: true
+    autoUpdateDataPlane: false
 
-  suspend: true
+  suspend: false
 
   myCnf: |
     [mariadb]
