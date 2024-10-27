@@ -42,6 +42,8 @@ spec:
     type: ReplicasFirstPrimaryLast
     # autoUpdateDataPlane: true
 
+  suspend: true
+
   myCnf: |
     [mariadb]
     bind-address=*
