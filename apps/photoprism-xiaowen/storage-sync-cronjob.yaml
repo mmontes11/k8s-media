@@ -4,7 +4,7 @@ metadata:
   name: photoprism-xiaowen-storage-sync
 spec:
   schedule: "0 5 * * *"
-  suspend: true
+  suspend: false
   successfulJobsHistoryLimit: 3
   concurrencyPolicy: Forbid
   failedJobsHistoryLimit: 1
