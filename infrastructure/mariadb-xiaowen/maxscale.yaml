@@ -6,6 +6,8 @@ spec:
   mariaDbRef:
     name: mariadb-xiaowen
 
+  replicas: 2
+
   config:
     volumeClaimTemplate:
       storageClassName: rook-ceph
