@@ -61,10 +61,3 @@ spec:
 
   nodeSelector:
     node.mmontes.io/type: compute
-
-  connection:
-    secretName: connection-mmontes
-    secretTemplate:
-      key: dsn
-    params:
-      parseTime: "true"
