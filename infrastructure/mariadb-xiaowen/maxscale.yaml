@@ -28,8 +28,26 @@ spec:
       name: mariadb-xiaowen
       key: password
 
+  tls:
+    enabled: true
+
   metrics:
     enabled: true
+
+  startupProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
 
   resources:
     requests:

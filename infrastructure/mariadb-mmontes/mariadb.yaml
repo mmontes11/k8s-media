@@ -35,6 +35,10 @@ spec:
     size: 4Gi
     storageClassName: rook-ceph
 
+  tls:
+    enabled: true
+    required: false
+
   metrics:
     enabled: true
 
@@ -51,6 +55,21 @@ spec:
     innodb_autoinc_lock_mode=2
     innodb_buffer_pool_size=800MB
     max_allowed_packet=300M
+
+  startupProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
 
   resources:
     requests:
