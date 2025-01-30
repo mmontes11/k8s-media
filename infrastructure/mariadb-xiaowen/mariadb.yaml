@@ -14,7 +14,7 @@ spec:
     key: password
   database: photoprism
 
-  image: mariadb:10.11.8
+  image: mariadb:11.4.4
 
   replicas: 3
 
