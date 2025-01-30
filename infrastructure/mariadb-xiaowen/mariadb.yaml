@@ -46,6 +46,7 @@ spec:
   tls:
     enabled: true
     required: false
+    galeraSSTEnabled: true
     serverCertIssuerRef:
       name: homelab
       kind: ClusterIssuer
