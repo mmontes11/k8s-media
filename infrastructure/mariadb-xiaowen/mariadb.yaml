@@ -46,6 +46,12 @@ spec:
   tls:
     enabled: true
     required: false
+    serverCertIssuerRef:
+      name: homelab
+      kind: ClusterIssuer
+    clientCertIssuerRef:
+      name: homelab
+      kind: ClusterIssuer
 
   metrics:
     enabled: true
