@@ -1,0 +1,16 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Connection
+metadata:
+  name: connection
+spec:
+  mariaDbRef:
+    name: mariadb-mmontes
+  username: mmontes
+  passwordSecretKeyRef:
+    name: mariadb-mmontes
+    key: password
+  database: photoprism
+  secretName: connection
+  params:
+    parseTime: "true"
+    config: null
