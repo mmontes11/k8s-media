@@ -53,7 +53,7 @@ spec:
     default_storage_engine=InnoDB
     binlog_format=row
     innodb_autoinc_lock_mode=2
-    innodb_buffer_pool_size=800MB
+    innodb_buffer_pool_size=1600MB
     max_allowed_packet=300M
 
   startupProbe:
@@ -74,9 +74,9 @@ spec:
   resources:
     requests:
       cpu: 500m
-      memory: 1Gi
+      memory: 2Gi
     limits:
-      memory: 1Gi
+      memory: 2Gi
 
   nodeSelector:
     node.mmontes.io/type: compute
