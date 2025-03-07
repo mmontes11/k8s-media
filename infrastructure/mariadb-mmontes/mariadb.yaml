@@ -56,18 +56,16 @@ spec:
     innodb_buffer_pool_size=1600MB
     max_allowed_packet=300M
 
-  startupProbe:
-    initialDelaySeconds: 30
-    periodSeconds: 15
-    timeoutSeconds: 5
-
   livenessProbe:
-    initialDelaySeconds: 30
     periodSeconds: 15
     timeoutSeconds: 5
 
   readinessProbe:
-    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  startupProbe:
+    failureThreshold: 30
     periodSeconds: 15
     timeoutSeconds: 5
 
