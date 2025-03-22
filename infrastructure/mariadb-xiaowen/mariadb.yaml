@@ -23,6 +23,9 @@ spec:
 
   galera:
     enabled: true
+    recovery:
+      enabled: true
+      clusterHealthyTimeout: 1m
 
   # bootstrapFrom:
   #   volume:
