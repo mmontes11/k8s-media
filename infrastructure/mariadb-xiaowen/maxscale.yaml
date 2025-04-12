@@ -34,7 +34,7 @@ spec:
   metrics:
     enabled: true
 
-  suspend: true
+  suspend: false
 
   startupProbe:
     initialDelaySeconds: 30
