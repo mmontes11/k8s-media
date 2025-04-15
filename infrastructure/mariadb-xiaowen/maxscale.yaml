@@ -60,5 +60,3 @@ spec:
 
   nodeSelector:
     node.mmontes.io/type: compute
-
-  requeueInterval: 1m
