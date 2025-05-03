@@ -73,6 +73,8 @@ spec:
     binlog_format=row
     innodb_autoinc_lock_mode=2
     innodb_buffer_pool_size=1600MB
+    slow_query_log
+    slow_query_log_file=mariadb-slow.log
 
   livenessProbe:
     periodSeconds: 15
