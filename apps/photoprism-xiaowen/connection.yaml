@@ -5,6 +5,7 @@ metadata:
 spec:
   maxScaleRef:
     name: maxscale-xiaowen
+  serviceName: maxscale-xiaowen
   username: xiaowen
   passwordSecretKeyRef:
     name: mariadb-xiaowen
