@@ -13,7 +13,6 @@ env:
   PHOTOPRISM_SITE_DESCRIPTION: "Media Center"
   PHOTOPRISM_BACKUP_DATABASE: false
   PHOTOPRISM_INDEX_SCHEDULE: ""
-  PHOTOPRISM_INIT: "tensorflow"
 
 secretRef:
   name: photoprism-mmontes

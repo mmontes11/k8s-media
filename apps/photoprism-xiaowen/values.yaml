@@ -14,7 +14,6 @@ env:
   PHOTOPRISM_SITE_DESCRIPTION: "Champi"
   PHOTOPRISM_BACKUP_DATABASE: false
   PHOTOPRISM_INDEX_SCHEDULE: ""
-  PHOTOPRISM_INIT: "tensorflow"
 
 secretRef:
   name: photoprism-xiaowen
