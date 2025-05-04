@@ -1,6 +1,6 @@
 image:
   repository: photoprism/photoprism
-  tag: "250321"
+  tag: "250426"
   pullPolicy: IfNotPresent
 
 env:
