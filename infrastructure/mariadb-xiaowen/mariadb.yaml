@@ -27,20 +27,20 @@ spec:
       enabled: true
       clusterHealthyTimeout: 1m
 
-  # bootstrapFrom:
-  #   volume:
-  #     nfs:
-  #       server: 10.0.0.50
-  #       path: /volume1/photoprism/xiaowen/backup
-  #   restoreJob:
-  #     args:
-  #       - "--verbose"
-  #     resources:
-  #       requests:
-  #         cpu: 100m
-  #         memory: 128Mi
-  #       limits:
-  #         memory: 1Gi
+  bootstrapFrom:
+    volume:
+      nfs:
+        server: 10.0.0.50
+        path: /volume1/photoprism/xiaowen/backup
+    restoreJob:
+      args:
+        - "--verbose"
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          memory: 1Gi
 
   storage:
     size: 10Gi
