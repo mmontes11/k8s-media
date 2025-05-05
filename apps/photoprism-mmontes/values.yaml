@@ -61,7 +61,7 @@ sync:
       cpu: 1
       memory: 1Gi
     limits:
-      memory: 2Gi
+      memory: 3Gi
 
 videoTranscoding:
   enabled: false
