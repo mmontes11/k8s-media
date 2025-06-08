@@ -12,7 +12,7 @@ env:
   PHOTOPRISM_SITE_CAPTION: "Media"
   PHOTOPRISM_SITE_DESCRIPTION: "Media Center"
   PHOTOPRISM_BACKUP_DATABASE: false
-  PHOTOPRISM_INDEX_SCHEDULE: ""
+  PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
 
 secretRef:
   name: photoprism-mmontes
@@ -54,14 +54,7 @@ database:
     key: dsn
 
 sync:
-  enabled: true
-  cron: "0 */3 * * *"
-  resources:
-    requests:
-      cpu: 1
-      memory: 1Gi
-    limits:
-      memory: 3Gi
+  enabled: false
 
 videoTranscoding:
   enabled: false

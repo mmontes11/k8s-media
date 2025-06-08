@@ -13,7 +13,7 @@ env:
   PHOTOPRISM_SITE_CAPTION: "Champi"
   PHOTOPRISM_SITE_DESCRIPTION: "Champi"
   PHOTOPRISM_BACKUP_DATABASE: false
-  PHOTOPRISM_INDEX_SCHEDULE: ""
+  PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
 
 secretRef:
   name: photoprism-xiaowen
@@ -55,14 +55,7 @@ database:
     key: dsn
 
 sync:
-  enabled: true
-  cron: "0 */3 * * *"
-  resources:
-    requests:
-      cpu: 1
-      memory: 2Gi
-    limits:
-      memory: 4Gi
+  enabled: false
 
 videoTranscoding:
   enabled: false
