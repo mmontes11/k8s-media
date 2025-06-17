@@ -4,6 +4,7 @@ namespace: media
 resources:
   - backup.yaml
   - mariadb.yaml
-  - maxscale.yaml
   - maxscale-httproute.yaml
+  - maxscale.yaml
+  - physicalbackup.yaml
   - sealedsecret.yaml
