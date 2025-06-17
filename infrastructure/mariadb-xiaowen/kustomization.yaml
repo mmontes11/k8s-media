@@ -7,4 +7,5 @@ resources:
   - maxscale-httproute.yaml
   - maxscale.yaml
   - physicalbackup.yaml
+  - physicalbackup-snap.yaml
   - sealedsecret.yaml
