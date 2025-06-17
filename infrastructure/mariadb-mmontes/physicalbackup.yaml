@@ -15,7 +15,7 @@ spec:
     volume:
       nfs:
         server: 10.0.0.50
-        path: /volume1/photoprism/mmontes/physical-backup
+        path: /volume1/photoprism/mmontes/physicalbackup
   timeout: 1h
   podAffinity: true
   resources:
