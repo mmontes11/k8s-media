@@ -1,0 +1,88 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MariaDB
+metadata:
+  name: mariadb-mmontes-from-backup
+spec:
+  rootPasswordSecretKeyRef:
+    name: mariadb-mmontes
+    key: password
+    generate: false
+
+  username: mmontes
+  passwordSecretKeyRef:
+    name: mariadb-mmontes
+    key: password
+  database: photoprism
+
+  image: mariadb:11.4.5
+
+  bootstrapFrom:
+    physicalBackupRef:
+      name: physicalbackup-mmontes
+
+  # bootstrapFrom:
+  #   backupType: Physical
+  #   volume:
+  #     nfs:
+  #       server: 10.0.0.50
+  #       path: /volume1/photoprism/mmontes/physicalbackup
+  #   restoreJob:
+  #     resources:
+  #       requests:
+  #         cpu: 100m
+  #         memory: 128Mi
+  #       limits:
+  #         memory: 1Gi
+
+  # bootstrapFrom:
+  #   volumeSnapshotRef:
+  #     name: physicalbackup-mmontes-snap-20250617102744  
+
+  storage:
+    size: 4Gi
+    storageClassName: rook-ceph
+
+  tls:
+    enabled: true
+    required: false
+
+  metrics:
+    enabled: true
+
+  updateStrategy:
+    type: ReplicasFirstPrimaryLast
+
+  suspend: false
+
+  myCnf: |
+    [mariadb]
+    bind-address=*
+    default_storage_engine=InnoDB
+    binlog_format=row
+    innodb_autoinc_lock_mode=2
+    innodb_buffer_pool_size=1600MB
+    slow_query_log
+    slow_query_log_file=mariadb-slow.log
+
+  livenessProbe:
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  readinessProbe:
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  startupProbe:
+    failureThreshold: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 2Gi
+    limits:
+      memory: 2Gi
+
+  nodeSelector:
+    node.mmontes.io/type: compute
