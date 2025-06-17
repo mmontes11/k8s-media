@@ -31,6 +31,32 @@ spec:
   #       limits:
   #         memory: 1Gi
 
+  # bootstrapFrom:
+  #   physicalBackupRef:
+  #     name: physicalbackup-mmontes
+
+  # bootstrapFrom:
+  #   backupType: Physical
+  #   volume:
+  #     nfs:
+  #       server: 10.0.0.50
+  #       path: /volume1/photoprism/mmontes/physicalbackup
+  #   restoreJob:
+  #     resources:
+  #       requests:
+  #         cpu: 100m
+  #         memory: 128Mi
+  #       limits:
+  #         memory: 1Gi
+
+  # bootstrapFrom:
+  #   physicalBackupRef:
+  #     name: physicalbackup-mmontes-snap
+
+  # bootstrapFrom:
+  #   volumeSnapshotRef:
+  #     name: physicalbackup-mmontes-snap-20250617102744  
+
   storage:
     size: 4Gi
     storageClassName: rook-ceph
