@@ -1,0 +1,26 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: physicalbackup-mmontes
+spec:
+  mariaDbRef:
+    name: mariadb-mmontes
+  schedule:
+    cron: "0 9 * * *"
+    suspend: false
+    immediate: true
+  compression: gzip
+  maxRetention: 730h # 1 month
+  storage:
+    volume:
+      nfs:
+        server: 10.0.0.50
+        path: /volume1/photoprism/mmontes/physical-backup
+  timeout: 1h
+  podAffinity: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
