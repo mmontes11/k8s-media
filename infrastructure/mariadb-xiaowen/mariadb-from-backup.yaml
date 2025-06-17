@@ -1,7 +1,7 @@
 apiVersion: k8s.mariadb.com/v1alpha1
 kind: MariaDB
 metadata:
-  name: mariadb-xiaowen
+  name: mariadb-xiaowen-from-backup
 spec:
   rootPasswordSecretKeyRef:
     name: mariadb-xiaowen
@@ -46,6 +46,10 @@ spec:
   #         memory: 1Gi
 
   # bootstrapFrom:
+  #   physicalBackupRef:
+  #     name: physicalbackup-xiaowen-snap
+
+  # bootstrapFrom:
   #   volumeSnapshotRef:
   #     name: physicalbackup-xiaowen-snap-20250617104042 
 
@@ -79,7 +83,7 @@ spec:
     default_storage_engine=InnoDB
     binlog_format=row
     innodb_autoinc_lock_mode=2
-    innodb_buffer_pool_size=1600MB
+    innodb_buffer_pool_size=700MB
     slow_query_log
     slow_query_log_file=mariadb-slow.log
 
@@ -99,12 +103,12 @@ spec:
   resources:
     requests:
       cpu: 500m
-      memory: 2Gi
+      memory: 1Gi
     limits:
-      memory: 2Gi
+      memory: 1Gi
 
   nodeSelector:
-    node.xiaowen.io/type: compute
+    node.mmontes.io/type: compute
 
   affinity:
     antiAffinityEnabled: true
