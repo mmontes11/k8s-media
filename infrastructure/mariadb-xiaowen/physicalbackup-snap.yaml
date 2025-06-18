@@ -6,7 +6,7 @@ spec:
   mariaDbRef:
     name: mariadb-xiaowen
   schedule:
-    cron: "30 9 * * *"
+    cron: "30 10 * * *"
     suspend: false
     immediate: true
   maxRetention: 720h # 30 days
