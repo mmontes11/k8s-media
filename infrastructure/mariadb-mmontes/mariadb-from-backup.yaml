@@ -17,15 +17,16 @@ spec:
   image: mariadb:11.4.5
 
   bootstrapFrom:
-    physicalBackupRef:
+    backupRef:
       name: physicalbackup-mmontes
+      kind: PhysicalBackup
 
   # bootstrapFrom:
-  #   backupType: Physical
   #   volume:
   #     nfs:
   #       server: 10.0.0.50
   #       path: /volume1/photoprism/mmontes/physicalbackup
+  #   backupContentType: Physical
   #   restoreJob:
   #     resources:
   #       requests:
@@ -34,10 +35,10 @@ spec:
   #       limits:
   #         memory: 1Gi
 
-
   # bootstrapFrom:
-  #   physicalBackupRef:
+  #   backupRef:
   #     name: physicalbackup-mmontes-snap
+  #     kind: PhysicalBackup
 
   # bootstrapFrom:
   #   volumeSnapshotRef:

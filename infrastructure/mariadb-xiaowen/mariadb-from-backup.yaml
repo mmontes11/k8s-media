@@ -28,15 +28,16 @@ spec:
       clusterHealthyTimeout: 1m
 
   bootstrapFrom:
-    physicalBackupRef:
+    backupRef:
       name: physicalbackup-xiaowen
+      kind: PhysicalBackup
 
   # bootstrapFrom:
-  #   backupType: Physical
   #   volume:
   #     nfs:
   #       server: 10.0.0.50
   #       path: /volume1/photoprism/xiaowen/physicalbackup
+  #   backupContentType: Physical
   #   restoreJob:
   #     resources:
   #       requests:
@@ -46,8 +47,9 @@ spec:
   #         memory: 1Gi
 
   # bootstrapFrom:
-  #   physicalBackupRef:
+  #   backupRef:
   #     name: physicalbackup-xiaowen-snap
+  #     kind: PhysicalBackup
 
   # bootstrapFrom:
   #   volumeSnapshotRef:
