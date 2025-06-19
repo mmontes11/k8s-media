@@ -6,7 +6,7 @@ spec:
   mariaDbRef:
     name: mariadb-mmontes
   schedule:
-    cron: "0 9 * * *"
+    cron: "0 7 * * *"
     suspend: false
     immediate: true
   compression: gzip
