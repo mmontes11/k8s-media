@@ -6,7 +6,7 @@ spec:
   mariaDbRef:
     name: mariadb-xiaowen
   schedule:
-    cron: "0 8 * * *"
+    cron: "0 3 * * *"
     suspend: false
     immediate: true
   compression: bzip2
