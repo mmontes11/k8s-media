@@ -24,3 +24,4 @@ spec:
       memory: 128Mi
     limits:
       memory: 512Mi
+  successfulJobsHistoryLimit: 2
