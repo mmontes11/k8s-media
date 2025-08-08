@@ -36,7 +36,7 @@ spec:
   #     name: physicalbackup-mmontes
 
   # bootstrapFrom:
-  #   backupType: Physical
+  #   backupContentType: Physical
   #   volume:
   #     nfs:
   #       server: 10.0.0.50
