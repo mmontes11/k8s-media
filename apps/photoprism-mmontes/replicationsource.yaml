@@ -1,0 +1,21 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: photoprism-mmontes
+spec:
+  sourcePVC: photoprism-mmontes
+  trigger:
+    manual: mmontes-1
+  restic:
+    repository: restic-mmontes
+    retain:
+      daily: 7
+    pruneIntervalDays: 14
+    copyMethod: Direct
+    cacheCapacity: 10Gi
+    cacheStorageClassName: rook-ceph
+    cacheAccessModes:
+      - ReadWriteOnce
+    customCA:
+      secretName: homelab-bundle-v2
+      key: ca.crt
