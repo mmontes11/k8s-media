@@ -12,6 +12,21 @@ spec:
       daily: 7
     pruneIntervalDays: 14
     copyMethod: Direct
+    moverResources:
+      requests:
+        cpu: 300m
+        memory: 100Mi
+      limits:
+        memory: 1Gi
+    moverAffinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node.mmontes.io/type
+                  operator: In
+                  values:
+                    - compute
     cacheCapacity: 10Gi
     cacheStorageClassName: rook-ceph
     cacheAccessModes:
