@@ -23,9 +23,6 @@ spec:
 
   galera:
     enabled: true
-    recovery:
-      enabled: true
-      clusterHealthyTimeout: 1m
     config:
       reuseStorageVolume: false
       volumeClaimTemplate:
