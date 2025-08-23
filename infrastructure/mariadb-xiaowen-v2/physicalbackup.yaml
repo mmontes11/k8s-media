@@ -9,7 +9,7 @@ spec:
     cron: "0 3 * * *"
     suspend: false
     immediate: true
-  compression: gzip
+  compression: bzip2
   maxRetention: 72h # 3 days
   storage:
     s3:
