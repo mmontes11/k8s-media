@@ -1,0 +1,38 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: PhysicalBackup
+metadata:
+  name: physicalbackup-mmontes
+spec:
+  mariaDbRef:
+    name: mariadb-mmontes
+  schedule:
+    cron: "0 3 * * *"
+    suspend: false
+    immediate: true
+  compression: gzip
+  maxRetention: 72h # 3 days
+  storage:
+    s3:
+      bucket: database
+      prefix: mariadb-mmontes/physical
+      endpoint: 10.0.0.90:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-mmontes
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-mmontes
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+  timeout: 1h
+  podAffinity: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+  successfulJobsHistoryLimit: 2
