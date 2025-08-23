@@ -1,0 +1,42 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: PhysicalBackup
+metadata:
+  name: physicalbackup-xiaowen
+spec:
+  mariaDbRef:
+    name: mariadb-xiaowen
+  schedule:
+    cron: "0 3 * * *"
+    suspend: false
+    immediate: true
+  compression: gzip
+  maxRetention: 72h # 3 days
+  storage:
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/physical
+      endpoint: 10.0.0.90:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+  timeout: 1h
+  podAffinity: true
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+  successfulJobsHistoryLimit: 2
