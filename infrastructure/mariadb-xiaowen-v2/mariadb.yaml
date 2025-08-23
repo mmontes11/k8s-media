@@ -26,6 +26,14 @@ spec:
     recovery:
       enabled: true
       clusterHealthyTimeout: 1m
+      reuseStorageVolume: false
+      volumeClaimTemplate:
+        storageClassName: topolvm
+        resources:
+          requests:
+            storage: 100Mi
+        accessModes:
+          - ReadWriteOnce
 
   # bootstrapFrom:
   #   volume:
