@@ -5,7 +5,7 @@ metadata:
 spec:
   sourcePVC: photoprism-mmontes
   trigger:
-    manual: mmontes-1
+    manual: mmontes-2
   restic:
     repository: restic-mmontes
     retain:
