@@ -11,6 +11,7 @@ spec:
     retain:
       daily: 7
     pruneIntervalDays: 14
+    unlock: true
     copyMethod: Direct
     moverResources:
       requests:
