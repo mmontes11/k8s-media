@@ -34,4 +34,4 @@ spec:
     customCA:
       secretName: homelab-bundle-v2
       key: ca.crt
-    unlock: true
+    unlock: mmontes-1
