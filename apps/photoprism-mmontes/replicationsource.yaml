@@ -11,6 +11,7 @@ spec:
     retain:
       daily: 7
     pruneIntervalDays: 14
+    unlock: mmontes-1
     copyMethod: Direct
     moverResources:
       requests:
@@ -34,4 +35,3 @@ spec:
     customCA:
       secretName: homelab-bundle-v2
       key: ca.crt
-    unlock: mmontes-1
