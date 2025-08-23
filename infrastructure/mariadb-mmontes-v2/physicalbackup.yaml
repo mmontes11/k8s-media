@@ -29,6 +29,10 @@ spec:
           key: ca.crt
   timeout: 1h
   podAffinity: true
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
   resources:
     requests:
       cpu: 100m
