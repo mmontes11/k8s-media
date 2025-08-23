@@ -1,0 +1,37 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Backup
+metadata:
+  name: backup-xiaowen
+spec:
+  mariaDbRef:
+    name: mariadb-xiaowen
+  schedule:
+    cron: "0 2 * * *"
+    suspend: false
+  maxRetention: 730h # 1 month
+  compression: bzip2
+  storage:
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/logical
+      endpoint: 10.0.0.90:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+  logLevel: info
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
