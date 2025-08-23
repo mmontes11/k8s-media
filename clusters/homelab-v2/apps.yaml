@@ -4,6 +4,8 @@ metadata:
   name: photoprism-mmontes
   namespace: media
 spec:
+  dependsOn:
+    - name: mariadb-mmontes
   interval: 5m
   sourceRef:
     kind: GitRepository
