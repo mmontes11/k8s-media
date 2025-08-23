@@ -12,7 +12,7 @@ spec:
   compression: gzip
   storage:
     s3:
-      bucket: databases
+      bucket: database
       prefix: mariadb-mmontes/logical
       endpoint: 10.0.0.90:443
       accessKeyIdSecretKeyRef:
