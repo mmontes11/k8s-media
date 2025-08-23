@@ -5,4 +5,5 @@ resources:
   - mariadb.yaml
   - maxscale.yaml
   - physicalbackup.yaml
+  - physicalbackup-snap.yaml
   - sealedsecret.yaml
