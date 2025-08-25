@@ -28,7 +28,7 @@ spec:
       PHOTOPRISM_SITE_CAPTION: "Media"
       PHOTOPRISM_SITE_DESCRIPTION: "Media Center"
       PHOTOPRISM_BACKUP_DATABASE: false
-      # PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
+      PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
 
     secretRef:
       name: photoprism-mmontes
