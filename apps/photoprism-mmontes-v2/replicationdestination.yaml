@@ -4,7 +4,7 @@ metadata:
   name: photoprism-mmontes
 spec:
   trigger:
-    manual: mmontes-1
+    manual: mmontes-2
   restic:
     repository: restic-mmontes
     destinationPVC: photoprism-mmontes
