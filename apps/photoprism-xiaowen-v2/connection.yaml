@@ -1,0 +1,18 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: Connection
+metadata:
+  name: connection-xiaowen
+spec:
+  maxScaleRef:
+    name: maxscale-xiaowen
+  username: xiaowen
+  passwordSecretKeyRef:
+    name: mariadb-xiaowen
+    key: password
+  database: photoprism
+  secretName: connection-xiaowen
+  secretTemplate:
+    key: dsn
+  params:
+    parseTime: "true"
+    tls: "false"

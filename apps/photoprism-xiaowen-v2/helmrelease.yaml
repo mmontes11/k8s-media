@@ -1,0 +1,100 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: photoprism-xiaowen
+spec:
+  releaseName: photoprism-xiaowen
+  chart:
+    spec:
+      chart: photoprism
+      sourceRef:
+        kind: HelmRepository
+        name: mmontes
+        namespace: flux-system
+      version: "0.11.0"
+  interval: 5m
+  values:
+    image:
+      repository: photoprism/photoprism
+      tag: "250707"
+      pullPolicy: IfNotPresent
+
+    env:
+      PHOTOPRISM_AUTH: true
+      PHOTOPRISM_ADMIN_USER: xiaowen
+      PHOTOPRISM_HTTP_COMPRESSION: "gzip"
+      PHOTOPRISM_LOG_LEVEL: info
+      PHOTOPRISM_READONLY: true
+      PHOTOPRISM_SITE_AUTHOR: "Xiaowen"
+      PHOTOPRISM_SITE_CAPTION: "Champi"
+      PHOTOPRISM_SITE_DESCRIPTION: "Champi"
+      PHOTOPRISM_BACKUP_DATABASE: false
+      # PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
+
+    secretRef:
+      name: photoprism-xiaowen
+
+    persistence:
+      enabled: true
+
+      nas: &nas 10.0.0.50
+
+      volumes:
+        - name: originals
+          nfs:
+            server: *nas
+            path: /volume1/homes/xiaowen
+            readOnly: true
+        - name: import
+          nfs:
+            server: *nas
+            path: /volume1/photoprism/xiaowen/import
+            readOnly: true
+        - name: storage
+          persistentVolumeClaim:
+            claimName: photoprism-xiaowen
+
+      volumeMounts:
+        - name: originals
+          mountPath: /photoprism/originals
+          readOnly: true
+        - name: import
+          mountPath: /photoprism/import
+          readOnly: true
+        - name: storage
+          mountPath: /photoprism/storage
+
+    database:
+      driver: mysql
+      dsnSecretKeyRef:
+        name: connection-xiaowen
+        key: dsn
+
+    sync:
+      enabled: false
+
+    videoTranscoding:
+      enabled: false
+
+    service:
+      type: LoadBalancer
+      annotations:
+        metallb.universe.tf/loadBalancerIPs: 10.0.0.96
+
+    httpRoute:
+      enabled: false
+
+    resources:
+      requests:
+        cpu: 2
+        memory: 4Gi
+      limits:
+        memory: 4Gi
+
+    tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-xlarge
+
+    nodeSelector:
+      node.mmontes.io/type: compute-xlarge
