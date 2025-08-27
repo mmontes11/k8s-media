@@ -1,0 +1,38 @@
+apiVersion: volsync.backube/v1alpha1
+kind: ReplicationSource
+metadata:
+  name: photoprism-xiaowen
+spec:
+  sourcePVC: photoprism-xiaowen
+  trigger:
+    schedule: "0 5 * * *"
+  restic:
+    repository: restic-xiaowen
+    retain:
+      daily: 7
+    pruneIntervalDays: 14
+    unlock: xiaowen-1
+    copyMethod: Direct
+    moverResources:
+      requests:
+        cpu: 1
+        memory: 300Mi
+      limits:
+        memory: 4Gi
+    moverAffinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: node.mmontes.io/type
+                  operator: In
+                  values:
+                    - compute-large
+                    - compute-xlarge
+    cacheCapacity: 10Gi
+    cacheStorageClassName: topolvm
+    cacheAccessModes:
+      - ReadWriteOnce
+    customCA:
+      secretName: homelab-bundle
+      key: ca.crt

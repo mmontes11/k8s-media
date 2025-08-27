@@ -5,6 +5,7 @@ resources:
   - connection.yaml
   - helmrelease.yaml
   - replicationdestination.yaml
+  - replicationsource.yaml
   - restic-sealedsecret.yaml
   - sealedsecret.yaml
   - storage-pvc.yaml
