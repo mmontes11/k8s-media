@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: photoprism-xiaowen-storage-sync
 spec:
-  schedule: "0 5 * * *"
+  schedule: "0 1 * * *"
   suspend: false
   successfulJobsHistoryLimit: 2
   concurrencyPolicy: Forbid
