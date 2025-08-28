@@ -12,6 +12,7 @@ spec:
       daily: 7
     pruneIntervalDays: 14
     unlock: xiaowen-1
+    # Direct method is required to inherit tolerations from Pod.
     copyMethod: Direct
     moverResources:
       requests:
