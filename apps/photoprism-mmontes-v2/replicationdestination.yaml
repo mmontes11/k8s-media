@@ -8,6 +8,7 @@ spec:
   restic:
     repository: restic-mmontes
     destinationPVC: photoprism-mmontes
+    # Direct method is required to inherit tolerations from Pod.
     copyMethod: Direct
     moverResources:
       requests:

@@ -8,6 +8,7 @@ spec:
   restic:
     repository: restic-xiaowen
     destinationPVC: photoprism-xiaowen
+    # Direct method is required to inherit tolerations from Pod.
     copyMethod: Direct
     moverResources:
       requests:
