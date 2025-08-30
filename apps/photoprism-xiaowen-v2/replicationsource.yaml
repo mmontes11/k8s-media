@@ -6,7 +6,7 @@ spec:
   sourcePVC: photoprism-xiaowen
   trigger:
     # schedule: "0 1 * * *"
-    manual: xiaowen-1
+    manual: xiaowen-2
   restic:
     repository: restic-xiaowen
     retain:
