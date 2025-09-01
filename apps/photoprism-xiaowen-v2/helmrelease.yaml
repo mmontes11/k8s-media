@@ -29,7 +29,7 @@ spec:
       PHOTOPRISM_SITE_CAPTION: "Champi"
       PHOTOPRISM_SITE_DESCRIPTION: "Champi"
       PHOTOPRISM_BACKUP_DATABASE: false
-      # PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
+      PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
 
     secretRef:
       name: photoprism-xiaowen
