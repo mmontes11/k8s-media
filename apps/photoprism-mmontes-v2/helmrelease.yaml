@@ -81,7 +81,11 @@ spec:
         metallb.universe.tf/loadBalancerIPs: 10.0.0.95
 
     httpRoute:
-      enabled: false
+      enabled: true
+      host: media.mmontes-internal.duckdns.org
+      gatewayRef:
+        name: traefik-internal
+        namespace: networking
 
     resources:
       requests:
