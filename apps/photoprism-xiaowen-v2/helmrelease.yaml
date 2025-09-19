@@ -77,9 +77,7 @@ spec:
       enabled: false
 
     service:
-      type: LoadBalancer
-      annotations:
-        metallb.universe.tf/loadBalancerIPs: 10.0.0.96
+      type: ClusterIP
 
     httpRoute:
       enabled: true
