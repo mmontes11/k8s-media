@@ -11,8 +11,93 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.10.0"
+      version: "0.11.0"
   interval: 5m
-  valuesFrom:
-    - kind: ConfigMap
+  values:
+    image:
+      repository: photoprism/photoprism
+      tag: "250707"
+      pullPolicy: IfNotPresent
+
+    env:
+      PHOTOPRISM_AUTH: true
+      PHOTOPRISM_HTTP_COMPRESSION: "gzip"
+      PHOTOPRISM_LOG_LEVEL: info
+      PHOTOPRISM_READONLY: true
+      PHOTOPRISM_SITE_AUTHOR: "Martin Montes"
+      PHOTOPRISM_SITE_CAPTION: "Media"
+      PHOTOPRISM_SITE_DESCRIPTION: "Media Center"
+      PHOTOPRISM_BACKUP_DATABASE: false
+      PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
+
+    secretRef:
       name: photoprism-mmontes
+
+    persistence:
+      enabled: true
+
+      nas: &nas 10.0.0.50
+
+      volumes:
+        - name: originals
+          nfs:
+            server: *nas
+            path: /volume1/homes/mmontes
+            readOnly: true
+        - name: import
+          nfs:
+            server: *nas
+            path: /volume1/photoprism/mmontes/import
+            readOnly: true
+        - name: storage
+          persistentVolumeClaim:
+            claimName: photoprism-mmontes
+
+      volumeMounts:
+        - name: originals
+          mountPath: /photoprism/originals
+          readOnly: true
+        - name: import
+          mountPath: /photoprism/import
+          readOnly: true
+        - name: storage
+          mountPath: /photoprism/storage
+
+    database:
+      driver: mysql
+      dsnSecretKeyRef:
+        name: connection-mmontes
+        key: dsn
+
+    sync:
+      enabled: false
+
+    videoTranscoding:
+      enabled: false
+
+    service:
+      type: ClusterIP
+
+    httpRoute:
+      enabled: true
+      host: media.mmontes-internal.duckdns.org
+      gatewayRef:
+        name: traefik-internal
+        namespace: networking
+
+    resources:
+      requests:
+        cpu: 2
+        memory: 4Gi
+      limits:
+        memory: 4Gi
+
+    tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-xlarge
+
+    nodeSelector:
+      node.mmontes.io/type: compute-xlarge
+
+

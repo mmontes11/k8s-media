@@ -5,7 +5,8 @@ metadata:
 spec:
   sourcePVC: photoprism-mmontes
   trigger:
-    manual: mmontes-2
+    # schedule: "0 0 * * *"
+    manual: mmontes-3
   restic:
     repository: restic-mmontes
     retain:
@@ -28,11 +29,12 @@ spec:
                 - key: node.mmontes.io/type
                   operator: In
                   values:
-                    - compute
+                    - compute-large
+                    - compute-xlarge
     cacheCapacity: 10Gi
-    cacheStorageClassName: rook-ceph
+    cacheStorageClassName: topolvm
     cacheAccessModes:
       - ReadWriteOnce
     customCA:
-      secretName: homelab-bundle-v2
+      secretName: homelab-bundle
       key: ca.crt
