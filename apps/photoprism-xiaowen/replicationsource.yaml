@@ -5,7 +5,8 @@ metadata:
 spec:
   sourcePVC: photoprism-xiaowen
   trigger:
-    manual: xiaowen-1
+    schedule: "0 1 * * *"
+    # manual: xiaowen-3
   restic:
     repository: restic-xiaowen
     retain:
@@ -28,11 +29,12 @@ spec:
                 - key: node.mmontes.io/type
                   operator: In
                   values:
-                    - compute
+                    - compute-large
+                    - compute-xlarge
     cacheCapacity: 10Gi
-    cacheStorageClassName: rook-ceph
+    cacheStorageClassName: topolvm
     cacheAccessModes:
       - ReadWriteOnce
     customCA:
-      secretName: homelab-bundle-v2
+      secretName: homelab-bundle
       key: ca.crt

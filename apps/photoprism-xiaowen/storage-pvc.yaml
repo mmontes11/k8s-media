@@ -4,8 +4,8 @@ metadata:
   name: photoprism-xiaowen
 spec:
   accessModes:
-  - ReadWriteMany
+  - ReadWriteOnce
   resources:
     requests:
       storage: 160Gi
-  storageClassName: rook-ceph-fs
+  storageClassName: topolvm

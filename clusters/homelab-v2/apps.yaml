@@ -28,6 +28,6 @@ spec:
     kind: GitRepository
     name: flux-tenant-media
     namespace: flux-system
-  path: ./apps/photoprism-xiaowen-v2
+  path: ./apps/photoprism-xiaowen
   prune: true
   timeout: 5m
