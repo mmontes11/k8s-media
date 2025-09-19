@@ -9,7 +9,7 @@ spec:
     kind: GitRepository
     name: flux-tenant-media
     namespace: flux-system
-  path: ./infrastructure/mariadb-mmontes-v2
+  path: ./infrastructure/mariadb-mmontes
   prune: true
   timeout: 5m
 ---

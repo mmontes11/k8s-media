@@ -11,10 +11,21 @@ spec:
   maxRetention: 730h # 1 month
   compression: gzip
   storage:
-    volume:
-      nfs:
-        server: 10.0.0.50
-        path: /volume1/photoprism/mmontes/backup
+    s3:
+      bucket: database
+      prefix: mariadb-mmontes/logical
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-mmontes
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-mmontes
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
   logLevel: info
   resources:
     requests:

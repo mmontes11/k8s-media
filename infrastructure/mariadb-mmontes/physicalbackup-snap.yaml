@@ -12,5 +12,5 @@ spec:
   maxRetention: 72h # 3 days
   storage:
     volumeSnapshot:
-      volumeSnapshotClassName: rook-ceph
+      volumeSnapshotClassName: topolvm
   timeout: 1h

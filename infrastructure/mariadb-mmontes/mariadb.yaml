@@ -17,49 +17,30 @@ spec:
   image: mariadb:11.8.2
 
   # bootstrapFrom:
-  #   volume:
-  #     nfs:
-  #       server: 10.0.0.50
-  #       path: /volume1/photoprism/mmontes/backup
-  #   restoreJob:
-  #     args:
-  #       - "--verbose"
-  #     resources:
-  #       requests:
-  #         cpu: 100m
-  #         memory: 128Mi
-  #       limits:
-  #         memory: 1Gi
-
-  # bootstrapFrom:
-  #   physicalBackupRef:
-  #     name: physicalbackup-mmontes
-
-  # bootstrapFrom:
   #   backupContentType: Physical
-  #   volume:
-  #     nfs:
-  #       server: 10.0.0.50
-  #       path: /volume1/photoprism/mmontes/physicalbackup
-  #   restoreJob:
-  #     resources:
-  #       requests:
-  #         cpu: 100m
-  #         memory: 128Mi
-  #       limits:
-  #         memory: 1Gi
-
-  # bootstrapFrom:
-  #   physicalBackupRef:
-  #     name: physicalbackup-mmontes-snap
+  #   s3:
+  #     bucket: database
+  #     prefix: mariadb-mmontes/physical
+  #     endpoint: minio.storage.svc.cluster.local:443
+  #     accessKeyIdSecretKeyRef:
+  #       name: mariadb-mmontes
+  #       key: access-key-id
+  #     secretAccessKeySecretKeyRef:
+  #       name: mariadb-mmontes
+  #       key: secret-access-key
+  #     tls:
+  #       enabled: true
+  #       caSecretKeyRef:
+  #         name: homelab-bundle
+  #         key: ca.crt
 
   # bootstrapFrom:
   #   volumeSnapshotRef:
-  #     name: physicalbackup-mmontes-snap-20250617102744  
+  #     name: physicalbackup-mmontes-snap-20250918233000  
 
   storage:
     size: 4Gi
-    storageClassName: rook-ceph
+    storageClassName: topolvm
 
   tls:
     enabled: true
@@ -103,5 +84,10 @@ spec:
     limits:
       memory: 2Gi
 
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
+
   nodeSelector:
-    node.mmontes.io/type: compute
+    node.mmontes.io/type: compute-large

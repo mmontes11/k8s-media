@@ -14,7 +14,7 @@ spec:
     s3:
       bucket: database
       prefix: mariadb-xiaowen/logical
-      endpoint: 10.0.0.90:443
+      endpoint: minio.storage.svc.cluster.local:443
       accessKeyIdSecretKeyRef:
         name: mariadb-xiaowen
         key: access-key-id
