@@ -10,7 +10,7 @@ spec:
     suspend: false
     immediate: true
   compression: bzip2
-  maxRetention: 730h # 1 month
+  maxRetention: 168h # 7 days
   storage:
     s3:
       bucket: database
