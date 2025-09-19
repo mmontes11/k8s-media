@@ -24,6 +24,6 @@ spec:
     kind: GitRepository
     name: flux-tenant-media
     namespace: flux-system
-  path: ./infrastructure/mariadb-xiaowen-v2
+  path: ./infrastructure/mariadb-xiaowen
   prune: true
   timeout: 5m

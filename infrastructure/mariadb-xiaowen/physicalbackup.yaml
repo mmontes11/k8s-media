@@ -10,14 +10,29 @@ spec:
     suspend: false
     immediate: true
   compression: bzip2
-  maxRetention: 72h # 3 days
+  maxRetention: 730h # 1 month
   storage:
-    volume:
-      nfs:
-        server: 10.0.0.50
-        path: /volume1/photoprism/xiaowen/physicalbackup
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/physical
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
   timeout: 1h
   podAffinity: true
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
   resources:
     requests:
       cpu: 100m

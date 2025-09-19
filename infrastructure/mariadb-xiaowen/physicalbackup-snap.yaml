@@ -9,8 +9,8 @@ spec:
     cron: "30 23 * * *"
     suspend: false
     immediate: true
-  maxRetention: 72h # 3 days
+  maxRetention: 168h # 7 days
   storage:
     volumeSnapshot:
-      volumeSnapshotClassName: rook-ceph
+      volumeSnapshotClassName: topolvm
   timeout: 1h

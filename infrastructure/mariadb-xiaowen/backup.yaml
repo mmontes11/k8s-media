@@ -11,10 +11,21 @@ spec:
   maxRetention: 730h # 1 month
   compression: bzip2
   storage:
-    volume:
-      nfs:
-        server: 10.0.0.50
-        path: /volume1/photoprism/xiaowen/backup
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/logical
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
   logLevel: info
   resources:
     requests:

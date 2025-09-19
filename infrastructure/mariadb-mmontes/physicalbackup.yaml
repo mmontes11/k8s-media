@@ -10,7 +10,7 @@ spec:
     suspend: false
     immediate: true
   compression: gzip
-  maxRetention: 72h # 3 days
+  maxRetention: 730h # 1 month
   storage:
     s3:
       bucket: database

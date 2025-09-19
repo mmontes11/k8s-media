@@ -23,46 +23,33 @@ spec:
 
   galera:
     enabled: true
-    recovery:
-      enabled: true
-      clusterHealthyTimeout: 1m
-
-  # bootstrapFrom:
-  #   volume:
-  #     nfs:
-  #       server: 10.0.0.50
-  #       path: /volume1/photoprism/xiaowen/backup
-  #   restoreJob:
-  #     args:
-  #       - "--verbose"
-  #     resources:
-  #       requests:
-  #         cpu: 100m
-  #         memory: 128Mi
-  #       limits:
-  #         memory: 1Gi
-
-  # bootstrapFrom:
-  #   physicalBackupRef:
-  #     name: physicalbackup-xiaowen
+    config:
+      reuseStorageVolume: false
+      volumeClaimTemplate:
+        storageClassName: topolvm
+        resources:
+          requests:
+            storage: 100Mi
+        accessModes:
+          - ReadWriteOnce
 
   # bootstrapFrom:
   #   backupContentType: Physical
-  #   volume:
-  #     nfs:
-  #       server: 10.0.0.50
-  #       path: /volume1/photoprism/xiaowen/physicalbackup
-  #   restoreJob:
-  #     resources:
-  #       requests:
-  #         cpu: 100m
-  #         memory: 128Mi
-  #       limits:
-  #         memory: 1Gi
-
-  # bootstrapFrom:
-  #   physicalBackupRef:
-  #     name: physicalbackup-xiaowen-snap
+  #   s3:
+  #     bucket: database
+  #     prefix: mariadb-xiaowen/physical
+  #     endpoint: minio.storage.svc.cluster.local:443
+  #     accessKeyIdSecretKeyRef:
+  #       name: mariadb-xiaowen
+  #       key: access-key-id
+  #     secretAccessKeySecretKeyRef:
+  #       name: mariadb-xiaowen
+  #       key: secret-access-key
+  #     tls:
+  #       enabled: true
+  #       caSecretKeyRef:
+  #         name: homelab-bundle
+  #         key: ca.crt
 
   # bootstrapFrom:
   #   volumeSnapshotRef:
@@ -70,7 +57,7 @@ spec:
 
   storage:
     size: 10Gi
-    storageClassName: rook-ceph
+    storageClassName: topolvm
 
   tls:
     enabled: true
@@ -122,8 +109,13 @@ spec:
     limits:
       memory: 2Gi
 
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
+
   nodeSelector:
-    node.mmontes.io/type: compute
+    node.mmontes.io/type: compute-large
 
   affinity:
     antiAffinityEnabled: true

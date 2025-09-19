@@ -58,5 +58,10 @@ spec:
     limits:
       memory: 128Mi
 
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
+
   nodeSelector:
-    node.mmontes.io/type: compute
+    node.mmontes.io/type: compute-large
