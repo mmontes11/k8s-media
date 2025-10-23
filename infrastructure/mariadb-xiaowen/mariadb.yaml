@@ -75,7 +75,7 @@ spec:
 
   updateStrategy:
     type: ReplicasFirstPrimaryLast
-    # autoUpdateDataPlane: true
+    autoUpdateDataPlane: true
 
   suspend: false
 
