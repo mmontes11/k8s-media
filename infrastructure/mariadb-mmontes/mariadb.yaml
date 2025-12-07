@@ -16,6 +16,24 @@ spec:
 
   image: mariadb:11.8.2
 
+  bootstrapFrom:
+    backupContentType: Logical
+    s3:
+      bucket: database
+      prefix: mariadb-mmontes/logical
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-mmontes
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-mmontes
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+
   # bootstrapFrom:
   #   backupContentType: Physical
   #   s3:
@@ -41,6 +59,15 @@ spec:
   storage:
     size: 4Gi
     storageClassName: topolvm
+
+  replicas: 3
+
+  replication:
+    enabled: true
+    replica:
+      replPasswordSecretKeyRef:
+        name: mariadb-mmontes
+        key: password
 
   tls:
     enabled: true

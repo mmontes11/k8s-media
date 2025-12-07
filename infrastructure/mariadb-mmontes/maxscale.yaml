@@ -1,0 +1,67 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: MaxScale
+metadata:
+  name: maxscale-mmontes
+spec:
+  mariaDbRef:
+    name: mariadb-mmontes
+
+  replicas: 2
+
+  config:
+    volumeClaimTemplate:
+      storageClassName: rook-ceph
+      resources:
+        requests:
+          storage: 100Mi
+      accessModes:
+        - ReadWriteOnce
+
+  admin:
+    port: 8989
+    guiEnabled: true
+
+  auth:
+    generate: true
+    adminUsername: mmontes
+    adminPasswordSecretKeyRef:
+      name: mariadb-mmontes
+      key: password
+
+  tls:
+    enabled: false
+
+  metrics:
+    enabled: true
+
+  suspend: false
+
+  startupProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 15
+    timeoutSeconds: 5
+
+  resources:
+    requests:
+      cpu: 300m
+      memory: 64Mi
+    limits:
+      memory: 128Mi
+
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
+
+  nodeSelector:
+    node.mmontes.io/type: compute-large
