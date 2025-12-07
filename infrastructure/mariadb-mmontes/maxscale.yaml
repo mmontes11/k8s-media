@@ -23,7 +23,7 @@ spec:
 
   auth:
     generate: true
-    adminUsername: admin
+    adminUsername: mmontes
     adminPasswordSecretKeyRef:
       name: mariadb-mmontes
       key: password
