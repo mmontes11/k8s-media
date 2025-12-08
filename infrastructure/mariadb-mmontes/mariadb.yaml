@@ -57,7 +57,7 @@ spec:
   #     name: physicalbackup-mmontes-snap-20250918233000  
 
   storage:
-    size: 4Gi
+    size: 10Gi
     storageClassName: topolvm
 
   replicas: 3
