@@ -73,7 +73,8 @@ spec:
           name: pb-mmontes-tpl
       recovery:
         enabled: true
- 
+        errorDurationThreshold: 5m
+
   tls:
     enabled: true
     required: false
