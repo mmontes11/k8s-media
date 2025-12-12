@@ -135,6 +135,7 @@ spec:
     name: mariadb-mmontes
   schedule:
     suspend: true
+  maxRetention: 5m
   storage:
     s3:
       bucket: database
