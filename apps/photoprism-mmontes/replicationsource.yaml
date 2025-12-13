@@ -5,7 +5,7 @@ metadata:
 spec:
   sourcePVC: photoprism-mmontes
   trigger:
-    schedule: "0 1 * * *"
+    schedule: "0 0 * * *"
     # manual: mmontes-4
   restic:
     repository: restic-mmontes
