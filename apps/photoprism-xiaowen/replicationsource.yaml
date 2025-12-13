@@ -5,8 +5,8 @@ metadata:
 spec:
   sourcePVC: photoprism-xiaowen
   trigger:
-    # schedule: "0 1 * * *"
-    manual: xiaowen-4
+    schedule: "0 1 * * *"
+    # manual: xiaowen-4
   restic:
     repository: restic-xiaowen
     retain:
