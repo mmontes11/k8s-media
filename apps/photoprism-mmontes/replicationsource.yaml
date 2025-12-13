@@ -5,8 +5,8 @@ metadata:
 spec:
   sourcePVC: photoprism-mmontes
   trigger:
-    schedule: "0 1 * * *"
-    # manual: mmontes-3
+    # schedule: "0 1 * * *"
+    manual: mmontes-4
   restic:
     repository: restic-mmontes
     retain:
@@ -21,16 +21,6 @@ spec:
         memory: 300Mi
       limits:
         memory: 4Gi
-    moverAffinity:
-      nodeAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          nodeSelectorTerms:
-            - matchExpressions:
-                - key: node.mmontes.io/type
-                  operator: In
-                  values:
-                    - compute-large
-                    - compute-xlarge
     cacheCapacity: 10Gi
     cacheStorageClassName: topolvm
     cacheAccessModes:
