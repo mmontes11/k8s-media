@@ -11,12 +11,12 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.11.0"
+      version: "0.12.0"
   interval: 5m
   values:
     image:
       repository: photoprism/photoprism
-      tag: "250707"
+      tag: "251130"
       pullPolicy: IfNotPresent
 
     env:
@@ -69,8 +69,78 @@ spec:
         name: connection-mmontes
         key: dsn
 
-    sync:
-      enabled: false
+    batch:
+      enabled: true
+      jobs:
+        - name: faces
+          cron: "* */3 * * *"
+          suspend: true
+          command:
+            - photoprism
+          args:
+            - faces
+            - index
+        - name: vision-labels
+          cron: "*/5 * * * *"
+          suspend: true
+          command:
+            - photoprism
+          args:
+            - vision
+            - run
+            - -m
+            - labels
+            - --count
+            - 1
+            - --force
+        - name: vision-caption
+          cron: "*/5 * * * *"
+          suspend: true
+          command:
+            - photoprism
+          args:
+            - vision
+            - run
+            - -m
+            - caption
+            - --count
+            - 1
+            - --force
+      resources:
+        requests:
+          cpu: 4
+          memory: 4Gi
+        limits:
+          memory: 4Gi
+      tolerations:
+      - effect: NoSchedule
+        key: node.mmontes.io/type
+        value: compute-xlarge
+      nodeSelector:
+        node.mmontes.io/type: compute-xlarge
+
+    vision:
+      enabled: true
+      mountPath: /photoprism/storage/config/vision.yml
+      subPath: vision.yml
+      config: |
+        Models:
+        - Type: labels
+          Model: gemma3:4b
+          Engine: ollama
+          Run: manual
+          Service:
+            Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
+        - Type: caption
+          Model: gemma3:4b
+          Engine: ollama
+          Run: manual
+          Prompt: >
+            Create a caption with exactly one sentence in the active voice that
+            describes the main visual content. Begin with the main subject and
+            clear action. Avoid text formatting, meta-language, and filler words.
+          Service:
+            Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
 
     videoTranscoding:
       enabled: false
@@ -87,7 +157,7 @@ spec:
 
     resources:
       requests:
-        cpu: 2
+        cpu: 4
         memory: 4Gi
       limits:
         memory: 4Gi
