@@ -11,12 +11,12 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.11.0"
+      version: "0.13.0"
   interval: 5m
   values:
     image:
       repository: photoprism/photoprism
-      tag: "250707"
+      tag: "251130"
       pullPolicy: IfNotPresent
 
     env:
@@ -70,8 +70,63 @@ spec:
         name: connection-xiaowen
         key: dsn
 
-    sync:
-      enabled: false
+    batch:
+      enabled: true
+      jobs:
+        - name: faces
+          cron: "* */3 * * *"
+          suspend: true
+          command:
+            - photoprism
+          args:
+            - faces
+            - index
+        - name: vision-labels
+          cron: "*/5 * * * *"
+          suspend: true
+          command:
+            - photoprism
+          args:
+            - vision
+            - run
+            - -m
+            - labels
+            - --count
+            - 1
+            - --force
+        - name: vision-caption
+          cron: "*/5 * * * *"
+          suspend: true
+          command:
+            - photoprism
+          args:
+            - vision
+            - run
+            - -m
+            - caption
+            - --count
+            - 1
+            - --force
+      resources:
+        requests:
+          cpu: 4
+          memory: 4Gi
+        limits:
+          memory: 4Gi
+      tolerations:
+      - effect: NoSchedule
+        key: node.mmontes.io/type
+        value: compute-xlarge
+      nodeSelector:
+        node.mmontes.io/type: compute-xlarge
+
+    vision:
+      enabled: true
+      mountPath: /photoprism/storage/config/vision.yml
+      subPath: vision.yml
+      configVolume:
+        configMap:
+          name: photoprism-vision
 
     videoTranscoding:
       enabled: false
@@ -88,7 +143,7 @@ spec:
 
     resources:
       requests:
-        cpu: 2
+        cpu: 4
         memory: 4Gi
       limits:
         memory: 4Gi
