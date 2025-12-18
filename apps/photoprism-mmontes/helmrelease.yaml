@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.12.0"
+      version: "0.13.0"
   interval: 5m
   values:
     image:
@@ -123,24 +123,9 @@ spec:
       enabled: true
       mountPath: /photoprism/storage/config/vision.yml
       subPath: vision.yml
-      config: |
-        Models:
-        - Type: labels
-          Model: gemma3:4b
-          Engine: ollama
-          Run: manual
-          Service:
-            Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
-        - Type: caption
-          Model: gemma3:4b
-          Engine: ollama
-          Run: manual
-          Prompt: >
-            Create a caption with exactly one sentence in the active voice that
-            describes the main visual content. Begin with the main subject and
-            clear action. Avoid text formatting, meta-language, and filler words.
-          Service:
-            Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
+      configVolume:
+        configMap:
+          name: photoprism-vision
 
     videoTranscoding:
       enabled: false

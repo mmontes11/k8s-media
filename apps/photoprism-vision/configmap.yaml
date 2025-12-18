@@ -1,0 +1,76 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: photoprism-vision
+# see: https://docs.photoprism.app/user-guide/ai/ollama-models/#configuration-examples
+data:
+  # gemma3:4b
+  vision.yml: |
+    Models:
+    - Type: labels
+      Model: gemma3:4b
+      Engine: ollama
+      Run: manual
+      Service:
+        Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
+    - Type: caption
+      Model: gemma3:4b
+      Engine: ollama
+      Run: manual
+      Prompt: |
+        Create a caption with exactly one sentence in the active voice that
+        describes the main visual content. Begin with the main subject and
+        clear action. Avoid text formatting, meta-language, and filler words.
+      Service:
+        Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
+  # qwen3-vl:8b-instruct
+  # vision.yml: |
+  #   Models:
+  #   - Type: labels
+  #     Model: qwen3-vl:8b-instruct
+  #     Engine: ollama
+  #     Run: manual
+  #     Prompt: |
+  #       Analyze the image and return JSON label objects with name, confidence (0-1), and topicality (0-1):
+  #       - Return AT MOST 3 labels.
+  #       - Each label name MUST be a single-word noun in canonical singular form.
+  #       - Do NOT repeat the same label name more than once.
+  #       - Do NOT add any fields other than name, confidence, topicality.
+  #       - Do NOT output any text before or after the JSON.
+  #     Options:
+  #       Seed: 3407           # model default, see https://github.com/QwenLM/Qwen3-VL
+  #       Temperature: 0.01    # low randomness, fewer hallucinations
+  #       TopK: 40             # consider only top ~40 tokens
+  #       TopP: 0.9            # cut off tail of distribution
+  #       MinP: 0.05           # drop rare tokens
+  #       TypicalP: 1.0        # effectively off
+  #       RepeatLastN: 128     # look back to prevent repetition
+  #       RepeatPenalty: 1.2   # penalty to avoid simple loops
+  #       NumPredict: 512      # prevent runaway output
+  #     Service:
+  #       Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
+  #   - Type: caption
+  #     Model: qwen3-vl:8b-instruct
+  #     Engine: ollama
+  #     Run: manual
+  #     System: You are an image captioning assistant.
+  #     Prompt: |
+  #       Write one or two concise sentences that describe the main subject, key actions, and setting of the image:
+  #       - Describe only what is clearly visible in the image; do not invent names, ages, or backstories.
+  #       - Use natural, fluent language without bullet points or lists.
+  #       - Do NOT start with phrases like "The image shows" or "In this picture".
+  #       - Do NOT mention camera settings, image quality, filters, or art style unless they are essential to understanding the content.
+  #       - Do NOT include quotation marks around the caption.
+  #       - Respond with the caption text only, and nothing else.
+  #     Options:
+  #       Seed: 3407           # model default, see https://github.com/QwenLM/Qwen3-VL
+  #       Temperature: 0.25    # reduce randomness for fewer hallucinations
+  #       TopK: 20             # matches the model's default
+  #       TopP: 0.8            # matches the model's default
+  #       MinP: 0.05           # cut very low-probability, odd tokens
+  #       TypicalP: 1.0        # effectively disabled; TopP/MinP dominate
+  #       RepeatLastN: 64      # short history for 1–2 sentences
+  #       RepeatPenalty: 1.1   # penalty to avoid loops without harming fluency
+  #       NumPredict: 128      # prevent runaway output
+  #     Service:
+  #       Uri: http://ollama:11434/api/generate

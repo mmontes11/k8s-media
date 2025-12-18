@@ -1,10 +1,26 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
+  name: photoprism-vision
+  namespace: media
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-tenant-media
+    namespace: flux-system
+  path: ./apps/photoprism-vision
+  prune: true
+  timeout: 5m
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
   name: photoprism-mmontes
   namespace: media
 spec:
   dependsOn:
+    - name: photoprism-vision
     - name: mariadb-mmontes
   interval: 5m
   sourceRef:
@@ -22,6 +38,7 @@ metadata:
   namespace: media
 spec:
   dependsOn:
+    - name: photoprism-vision
     - name: mariadb-xiaowen
   interval: 5m
   sourceRef:
