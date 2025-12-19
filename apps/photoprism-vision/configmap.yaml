@@ -73,4 +73,4 @@ data:
         RepeatPenalty: 1.1   # penalty to avoid loops without harming fluency
         NumPredict: 128      # prevent runaway output
       Service:
-        Uri: http://ollama:11434/api/generate
+        Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
