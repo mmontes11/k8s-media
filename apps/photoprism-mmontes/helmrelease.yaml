@@ -91,7 +91,7 @@ spec:
             - -m
             - labels
             - --count
-            - 1
+            - 10
             - --force
         - name: vision-caption
           cron: "*/5 * * * *"
@@ -104,7 +104,7 @@ spec:
             - -m
             - caption
             - --count
-            - 1
+            - 10
             - --force
       resources:
         requests:
