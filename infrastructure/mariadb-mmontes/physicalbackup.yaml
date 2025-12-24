@@ -5,6 +5,7 @@ metadata:
 spec:
   mariaDbRef:
     name: mariadb-mmontes
+    waitForIt: false
   schedule:
     cron: "0 23 * * *"
     suspend: false
@@ -27,6 +28,7 @@ spec:
         caSecretKeyRef:
           name: homelab-bundle
           key: ca.crt
+  target: PreferReplica
   timeout: 1h
   podAffinity: true
   tolerations:

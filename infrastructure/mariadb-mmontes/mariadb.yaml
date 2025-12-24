@@ -14,7 +14,7 @@ spec:
     key: password
   database: photoprism
 
-  image: mariadb:11.8.2
+  image: mariadb:11.8.5
 
   # bootstrapFrom:
   #   backupContentType: Logical
@@ -84,6 +84,7 @@ spec:
 
   updateStrategy:
     type: ReplicasFirstPrimaryLast
+    autoUpdateDataPlane: true
 
   suspend: false
 
@@ -133,6 +134,7 @@ metadata:
 spec:
   mariaDbRef:
     name: mariadb-mmontes
+    waitForIt: false
   schedule:
     suspend: true
   maxRetention: 5m
@@ -152,6 +154,7 @@ spec:
         caSecretKeyRef:
           name: homelab-bundle
           key: ca.crt
+  target: PreferReplica
   timeout: 1h
   podAffinity: true
   tolerations:

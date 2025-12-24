@@ -5,6 +5,7 @@ metadata:
 spec:
   mariaDbRef:
     name: mariadb-mmontes
+    waitForIt: false
   schedule:
     cron: "30 23 * * *"
     suspend: false
@@ -13,4 +14,5 @@ spec:
   storage:
     volumeSnapshot:
       volumeSnapshotClassName: topolvm
+  target: PreferReplica
   timeout: 1h
