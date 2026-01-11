@@ -64,6 +64,8 @@ spec:
 
   replication:
     enabled: true
+    primary:
+      podIndex: 2
     replica:
       replPasswordSecretKeyRef:
         name: mariadb-mmontes
