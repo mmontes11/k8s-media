@@ -16,6 +16,26 @@ spec:
 
   image: mariadb:11.8.5
 
+  replicas: 3
+
+  maxScaleRef:
+    name: maxscale-mmontes
+
+  replication:
+    enabled: true
+    primary:
+      podIndex: 2
+    replica:
+      replPasswordSecretKeyRef:
+        name: mariadb-mmontes
+        key: password
+      bootstrapFrom:
+        physicalBackupTemplateRef:
+          name: pb-mmontes-tpl
+      recovery:
+        enabled: true
+        errorDurationThreshold: 5m
+
   # bootstrapFrom:
   #   backupContentType: Logical
   #   s3:
@@ -59,23 +79,6 @@ spec:
   storage:
     size: 10Gi
     storageClassName: topolvm
-
-  replicas: 3
-
-  replication:
-    enabled: true
-    primary:
-      podIndex: 2
-    replica:
-      replPasswordSecretKeyRef:
-        name: mariadb-mmontes
-        key: password
-      bootstrapFrom:
-        physicalBackupTemplateRef:
-          name: pb-mmontes-tpl
-      recovery:
-        enabled: true
-        errorDurationThreshold: 5m
 
   tls:
     enabled: true
