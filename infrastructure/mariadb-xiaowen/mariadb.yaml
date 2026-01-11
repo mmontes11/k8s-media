@@ -23,8 +23,6 @@ spec:
 
   galera:
     enabled: true
-    primary:
-      podIndex: 1
     config:
       reuseStorageVolume: false
       volumeClaimTemplate:
