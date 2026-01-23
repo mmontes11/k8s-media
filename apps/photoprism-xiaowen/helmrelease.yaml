@@ -103,8 +103,8 @@ spec:
             - caption
       resources:
         requests:
-          cpu: 4
-          memory: 4Gi
+          cpu: 1
+          memory: 1Gi
         limits:
           memory: 4Gi
       tolerations:
