@@ -99,7 +99,7 @@ spec:
 
   startupProbe:
     failureThreshold: 30
-    periodSeconds: 15
+    periodSeconds: 20
     timeoutSeconds: 5
 
   resources:
