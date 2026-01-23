@@ -29,7 +29,7 @@ data:
     - Type: labels
       Model: qwen3-vl:8b-instruct
       Engine: ollama
-      Run: manual
+      Run: auto
       Prompt: |
         Analyze the image and return JSON label objects with name, confidence (0-1), and topicality (0-1):
         - Return AT MOST 3 labels.
@@ -49,7 +49,7 @@ data:
         NumPredict: 512      # prevent runaway output
       Service:
         Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
-    - Type: caption
+    - Type: auto
       Model: qwen3-vl:8b-instruct
       Engine: ollama
       Run: manual
