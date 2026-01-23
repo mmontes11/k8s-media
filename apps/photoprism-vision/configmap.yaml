@@ -49,10 +49,10 @@ data:
         NumPredict: 512      # prevent runaway output
       Service:
         Uri: http://ollama.ai.svc.cluster.local:11434/api/generate
-    - Type: auto
+    - Type: caption
       Model: qwen3-vl:8b-instruct
       Engine: ollama
-      Run: manual
+      Run: auto
       System: You are an image captioning assistant.
       Prompt: |
         Write one or two concise sentences that describe the main subject, key actions, and setting of the image:

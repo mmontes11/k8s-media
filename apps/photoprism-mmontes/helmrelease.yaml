@@ -90,6 +90,7 @@ spec:
             - run
             - -m
             - labels
+            - -f
         - name: vision-caption
           cron: "* */3 * * *"
           suspend: true
@@ -100,6 +101,7 @@ spec:
             - run
             - -m
             - caption
+            - -f
       resources:
         requests:
           cpu: 1
