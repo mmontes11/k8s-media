@@ -82,7 +82,7 @@ spec:
             - faces
             - index
         - name: vision-labels
-          cron: "*/5 * * * *"
+          cron: "* */3 * * *"
           suspend: true
           command:
             - photoprism
@@ -91,11 +91,8 @@ spec:
             - run
             - -m
             - labels
-            - --count
-            - 10
-            - --force
         - name: vision-caption
-          cron: "*/5 * * * *"
+          cron: "* */3 * * *"
           suspend: true
           command:
             - photoprism
@@ -104,9 +101,6 @@ spec:
             - run
             - -m
             - caption
-            - --count
-            - 10
-            - --force
       resources:
         requests:
           cpu: 4
