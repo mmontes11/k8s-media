@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.13.0"
+      version: "0.14.0"
   interval: 5m
   values:
     image:
@@ -29,6 +29,10 @@ spec:
       PHOTOPRISM_SITE_DESCRIPTION: "Media Center"
       PHOTOPRISM_BACKUP_DATABASE: false
       PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
+      PHOTOPRISM_FFMPEG_ENCODER: "nvidia"
+      PHOTOPRISM_INIT: "tensorflow-gpu"
+      NVIDIA_VISIBLE_DEVICES: "all"
+      NVIDIA_DRIVER_CAPABILITIES: "all"
 
     secretRef:
       name: photoprism-mmontes
@@ -136,12 +140,15 @@ spec:
         name: traefik-internal
         namespace: networking
 
+    runtimeClassName: nvidia
+
     resources:
       requests:
         cpu: 4
         memory: 4Gi
       limits:
         memory: 4Gi
+        nvidia.com/gpu: 1
 
     tolerations:
     - effect: NoSchedule
