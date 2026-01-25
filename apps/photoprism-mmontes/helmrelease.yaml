@@ -126,9 +126,6 @@ spec:
         configMap:
           name: photoprism-vision
 
-    videoTranscoding:
-      enabled: false
-
     service:
       type: ClusterIP
 
