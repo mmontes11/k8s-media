@@ -22,8 +22,7 @@ spec:
     env:
       PHOTOPRISM_AUTH: true
       PHOTOPRISM_HTTP_COMPRESSION: "gzip"
-      #PHOTOPRISM_LOG_LEVEL: info
-      PHOTOPRISM_LOG_LEVEL: trace
+      PHOTOPRISM_LOG_LEVEL: info
       PHOTOPRISM_READONLY: true
       PHOTOPRISM_SITE_AUTHOR: "Martin Montes"
       PHOTOPRISM_SITE_CAPTION: "Media"
@@ -31,7 +30,6 @@ spec:
       PHOTOPRISM_BACKUP_DATABASE: false
       PHOTOPRISM_INDEX_SCHEDULE: "0 */3 * * *"
       PHOTOPRISM_FFMPEG_ENCODER: "nvidia"
-      PHOTOPRISM_INIT: "gpu"
       NVIDIA_VISIBLE_DEVICES: "all"
       NVIDIA_DRIVER_CAPABILITIES: "all"
 
