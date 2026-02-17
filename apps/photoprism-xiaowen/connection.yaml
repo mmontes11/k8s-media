@@ -3,13 +3,14 @@ kind: Connection
 metadata:
   name: connection-xiaowen
 spec:
-  maxScaleRef:
-    name: maxscale-xiaowen
+  mariaDbRef:
+    name: mariadb-xiaowen
   username: xiaowen
   passwordSecretKeyRef:
     name: mariadb-xiaowen
     key: password
   database: photoprism
+  host: mariadb-xiaowen-primary.media.svc.cluster.local 
   secretName: connection-xiaowen
   secretTemplate:
     key: dsn

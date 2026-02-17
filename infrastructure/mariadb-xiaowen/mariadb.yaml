@@ -18,9 +18,6 @@ spec:
 
   replicas: 3
 
-  maxScaleRef:
-    name: maxscale-xiaowen
-
   galera:
     enabled: true
     config:
@@ -32,6 +29,24 @@ spec:
             storage: 100Mi
         accessModes:
           - ReadWriteOnce
+
+  # bootstrapFrom:
+  #   backupContentType: Logical
+  #   s3:
+  #     bucket: database
+  #     prefix: mariadb-xiaowen/logical
+  #     endpoint: minio.storage.svc.cluster.local:443
+  #     accessKeyIdSecretKeyRef:
+  #       name: mariadb-xiaowen
+  #       key: access-key-id
+  #     secretAccessKeySecretKeyRef:
+  #       name: mariadb-xiaowen
+  #       key: secret-access-key
+  #     tls:
+  #       enabled: true
+  #       caSecretKeyRef:
+  #         name: homelab-bundle
+  #         key: ca.crt
 
   # bootstrapFrom:
   #   backupContentType: Physical
