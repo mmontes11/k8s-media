@@ -3,8 +3,8 @@ kind: Connection
 metadata:
   name: connection-mmontes
 spec:
-  maxScaleRef:
-    name: maxscale-mmontes
+  mariaDbRef:
+    name: mariadb-mmontes
   username: mmontes
   passwordSecretKeyRef:
     name: mariadb-mmontes

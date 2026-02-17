@@ -16,10 +16,7 @@ spec:
 
   image: mariadb:11.8.5
 
-  replicas: 3
-
-  maxScaleRef:
-    name: maxscale-mmontes
+  replicas: 2
 
   replication:
     enabled: true
