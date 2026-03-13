@@ -10,7 +10,7 @@ spec:
     cron: "0 23 * * *"
     suspend: false
     immediate: true
-    onDemand: "1"
+    onDemand: "2"
   compression: gzip
   maxRetention: 168h # 7 days
   storage:
