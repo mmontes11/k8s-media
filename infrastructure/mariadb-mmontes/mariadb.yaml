@@ -31,6 +31,9 @@ spec:
         enabled: true
         errorDurationThreshold: 5m
 
+  pointInTimeRecoveryRef:
+    name: pitr-mmontes
+
   # bootstrapFrom:
   #   backupContentType: Logical
   #   s3:
@@ -71,6 +74,26 @@ spec:
   #   volumeSnapshotRef:
   #     name: physicalbackup-mmontes-snap-20250918233000  
 
+  # bootstrapFrom:
+  #   pointInTimeRecoveryRef:
+  #     name: pitr-mmontes
+  #   targetRecoveryTime: 2026-02-20T18:00:04Z
+  #   stagingStorage:
+  #     persistentVolumeClaim:
+  #       resources:
+  #         requests:
+  #           storage: 10Gi
+  #       accessModes:
+  #         - ReadWriteOnce
+  #   restoreJob:
+  #     resources:
+  #       requests:
+  #         cpu: 100m
+  #         memory: 128Mi
+  #       limits:
+  #         memory: 1Gi
+  #   logLevel: debug
+
   storage:
     size: 10Gi
     storageClassName: topolvm
@@ -97,6 +120,7 @@ spec:
     innodb_buffer_pool_size=1600MB
     slow_query_log
     slow_query_log_file=mariadb-slow.log
+    max_binlog_size=64M
 
   livenessProbe:
     periodSeconds: 15
