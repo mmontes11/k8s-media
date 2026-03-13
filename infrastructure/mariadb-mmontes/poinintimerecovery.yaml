@@ -1,0 +1,26 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: PointInTimeRecovery
+metadata:
+  name: pitr-mmontes
+spec:
+  physicalBackupRef:
+    name: physicalbackup-mmontes
+  storage:
+    s3:
+      bucket: database
+      prefix: mariadb-mmontes/binlogs
+      endpoint: minio.minio.svc.cluster.local:9000
+      accessKeyIdSecretKeyRef:
+        name: mariadb-mmontes
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-mmontes
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+  compression: gzip
+  archiveTimeout: 1h
+  strictMode: true

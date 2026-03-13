@@ -6,4 +6,5 @@ resources:
   - mariadb.yaml
   - physicalbackup-snap.yaml
   - physicalbackup.yaml
+  - poinintimerecovery.yaml
   - sealedsecret.yaml
