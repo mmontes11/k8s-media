@@ -10,7 +10,6 @@ spec:
     name: mariadb-mmontes
     key: password
   database: photoprism
-  host: mariadb-mmontes-primary.media.svc.cluster.local 
   secretName: connection-mmontes
   secretTemplate:
     key: dsn

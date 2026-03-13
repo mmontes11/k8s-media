@@ -10,7 +10,6 @@ spec:
     name: mariadb-xiaowen
     key: password
   database: photoprism
-  host: mariadb-xiaowen-primary.media.svc.cluster.local 
   secretName: connection-xiaowen
   secretTemplate:
     key: dsn
