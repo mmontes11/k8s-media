@@ -1,0 +1,26 @@
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: PointInTimeRecovery
+metadata:
+  name: pitr-xiaowen
+spec:
+  physicalBackupRef:
+    name: physicalbackup-xiaowen
+  storage:
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/binlogs
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+  compression: bzip2
+  archiveTimeout: 1h
+  strictMode: true

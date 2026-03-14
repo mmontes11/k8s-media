@@ -16,37 +16,41 @@ spec:
 
   image: mariadb:11.8.5
 
-  replicas: 3
+  replicas: 2
 
-  galera:
+  replication:
     enabled: true
-    config:
-      reuseStorageVolume: false
-      volumeClaimTemplate:
-        storageClassName: topolvm
-        resources:
-          requests:
-            storage: 100Mi
-        accessModes:
-          - ReadWriteOnce
+    replica:
+      replPasswordSecretKeyRef:
+        name: mariadb-xiaowen
+        key: password
+      bootstrapFrom:
+        physicalBackupTemplateRef:
+          name: pb-xiaowen-tpl
+      recovery:
+        enabled: true
+        errorDurationThreshold: 5m
 
-  # bootstrapFrom:
-  #   backupContentType: Logical
-  #   s3:
-  #     bucket: database
-  #     prefix: mariadb-xiaowen/logical
-  #     endpoint: minio.storage.svc.cluster.local:443
-  #     accessKeyIdSecretKeyRef:
-  #       name: mariadb-xiaowen
-  #       key: access-key-id
-  #     secretAccessKeySecretKeyRef:
-  #       name: mariadb-xiaowen
-  #       key: secret-access-key
-  #     tls:
-  #       enabled: true
-  #       caSecretKeyRef:
-  #         name: homelab-bundle
-  #         key: ca.crt
+  pointInTimeRecoveryRef:
+    name: pitr-xiaowen
+
+  bootstrapFrom:
+    backupContentType: Logical
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/logical
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
 
   # bootstrapFrom:
   #   backupContentType: Physical
@@ -70,6 +74,26 @@ spec:
   #   volumeSnapshotRef:
   #     name: physicalbackup-xiaowen-snap-20250617104042 
 
+  # bootstrapFrom:
+  #   pointInTimeRecoveryRef:
+  #     name: pitr-xiaowen
+  #   targetRecoveryTime: 2026-02-20T18:00:04Z
+  #   stagingStorage:
+  #     persistentVolumeClaim:
+  #       resources:
+  #         requests:
+  #           storage: 10Gi
+  #       accessModes:
+  #         - ReadWriteOnce
+  #   restoreJob:
+  #     resources:
+  #       requests:
+  #         cpu: 100m
+  #         memory: 128Mi
+  #       limits:
+  #         memory: 1Gi
+  #   logLevel: debug
+
   storage:
     size: 10Gi
     storageClassName: topolvm
@@ -77,7 +101,6 @@ spec:
   tls:
     enabled: true
     required: false
-    galeraSSTEnabled: true
     serverCertIssuerRef:
       name: homelab
       kind: ClusterIssuer
@@ -103,6 +126,7 @@ spec:
     innodb_buffer_pool_size=1600MB
     slow_query_log
     slow_query_log_file=mariadb-slow.log
+    max_binlog_size=64M
 
   livenessProbe:
     periodSeconds: 15
@@ -114,7 +138,7 @@ spec:
 
   startupProbe:
     failureThreshold: 30
-    periodSeconds: 20
+    periodSeconds: 15
     timeoutSeconds: 5
 
   resources:
@@ -137,3 +161,46 @@ spec:
 
   podDisruptionBudget:
     maxUnavailable: 66%
+
+---
+apiVersion: k8s.mariadb.com/v1alpha1
+kind: PhysicalBackup
+metadata:
+  name: pb-xiaowen-tpl
+spec:
+  mariaDbRef:
+    name: mariadb-xiaowen
+    waitForIt: false
+  schedule:
+    suspend: true
+  maxRetention: 5m
+  storage:
+    s3:
+      bucket: database
+      prefix: mariadb-xiaowen/physical/bootstrap
+      endpoint: minio.storage.svc.cluster.local:443
+      accessKeyIdSecretKeyRef:
+        name: mariadb-xiaowen
+        key: access-key-id
+      secretAccessKeySecretKeyRef:
+        name: mariadb-xiaowen
+        key: secret-access-key
+      tls:
+        enabled: true
+        caSecretKeyRef:
+          name: homelab-bundle
+          key: ca.crt
+  target: PreferReplica
+  timeout: 1h
+  podAffinity: true
+  tolerations:
+    - effect: NoSchedule
+      key: node.mmontes.io/type
+      value: compute-large
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+  successfulJobsHistoryLimit: 2
