@@ -24,7 +24,7 @@
       "matchPackageNames": [
         "photoprism/photoprism"
       ],
-      "allowedVersions": "/^[0-9]+$/",
+      "allowedVersions": "/^[0-9]{6}$/",
       "maxMajorIncrement": 0
     }
   ]
