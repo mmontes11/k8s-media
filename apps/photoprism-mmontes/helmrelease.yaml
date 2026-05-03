@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "251130"
+      tag: "20220121"
       pullPolicy: IfNotPresent
 
     env:
