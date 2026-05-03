@@ -12,10 +12,19 @@
       "matchStrings": [
         "image:\\s+repository:\\s+photoprism/photoprism\\s+tag:\\s+[\"']?(?<currentValue>\\d+)[\"']?"
       ],
-      "datasourceTemplate": "github-releases",
-      "packageNameTemplate": "photoprism/photoprism",
-      "versioningTemplate": "regex:^(?<major>\\d+)$",
-      "extractVersionTemplate": "^(?<version>\\d{6})$"
+      "datasourceTemplate": "docker",
+      "packageNameTemplate": "photoprism/photoprism"
+    }
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "photoprism/photoprism"
+      ],
+      "allowedVersions": "^[0-9]+$"
     }
   ]
 }
