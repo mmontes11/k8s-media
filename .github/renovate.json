@@ -2,5 +2,20 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)apps/photoprism-.*\\/.*\\.yaml$/"
+      ],
+      "matchStrings": [
+        "image:\\s+repository:\\s+photoprism/photoprism\\s+tag:\\s+[\"']?(?<currentValue>\\d+)[\"']?"
+      ],
+      "datasourceTemplate": "github-releases",
+      "packageNameTemplate": "photoprism/photoprism",
+      "versioning": "regex:^(?<major>\\d{6})$",
+      "extractVersion": "^(?<version>\\d{6})$"
+    }
   ]
 }
