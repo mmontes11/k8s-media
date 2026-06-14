@@ -98,8 +98,7 @@ spec:
             - vision
             - -n
             - "5"
-            - -y
-            - --force
+            - -f
         - name: vision-caption
           cron: "* */3 * * *"
           suspend: true
