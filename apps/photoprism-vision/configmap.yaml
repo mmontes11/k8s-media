@@ -12,7 +12,7 @@ data:
   vision.yml: |
     Models:
     - Type: labels
-      Model: qwen3-vl:8b-instruct
+      Model: qwen3-vl
       Engine: openai
       Run: auto
       Prompt: |
@@ -35,7 +35,7 @@ data:
       Service:
         Uri: http://llamacpp.ai.svc.cluster.local:8080/v1/responses
     - Type: caption
-      Model: qwen3-vl:8b-instruct
+      Model: qwen3-vl
       Engine: openai
       Run: auto
       System: You are an image captioning assistant.
