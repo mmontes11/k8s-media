@@ -109,9 +109,11 @@ spec:
             - run
             - -m
             - caption
+            - -s
+            - vision
             - -n
             - "5"
-            - --force
+            - -f
       resources:
         requests:
           cpu: 1
