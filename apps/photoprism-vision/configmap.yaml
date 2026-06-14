@@ -5,6 +5,7 @@ metadata:
 # see: https://docs.photoprism.app/user-guide/ai/ollama-models/#configuration-examples
 data:
   # Ollama: http://ollama.ai.svc.cluster.local:11434/api/generate
+  # Llama.cpp: http://llamacpp.ai.svc.cluster.local:8080/v1/responses
   vision.yml: |
     Models:
     - Type: labels
