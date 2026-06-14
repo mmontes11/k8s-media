@@ -94,7 +94,8 @@ spec:
             - -m
             - labels
             - -n
-            - "10"
+            - "5"
+            - --force
         - name: vision-caption
           cron: "* */3 * * *"
           suspend: true
@@ -106,7 +107,8 @@ spec:
             - -m
             - caption
             - -n
-            - "10"
+            - "5"
+            - --force
       resources:
         requests:
           cpu: 1
