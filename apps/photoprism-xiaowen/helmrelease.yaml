@@ -94,8 +94,11 @@ spec:
             - run
             - -m
             - labels
+            - -s
+            - vision
             - -n
             - "5"
+            - -y
             - --force
         - name: vision-caption
           cron: "* */3 * * *"
