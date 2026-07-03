@@ -17,18 +17,13 @@ spec:
     s3:
       bucket: database
       prefix: mariadb-mmontes/physical
-      endpoint: minio.storage.svc.cluster.local:443
+      endpoint: seaweedfs-s3.storage.svc.cluster.local:8333
       accessKeyIdSecretKeyRef:
         name: mariadb-mmontes
         key: access-key-id
       secretAccessKeySecretKeyRef:
         name: mariadb-mmontes
         key: secret-access-key
-      tls:
-        enabled: true
-        caSecretKeyRef:
-          name: homelab-bundle
-          key: ca.crt
   target: PreferReplica
   timeout: 1h
   podAffinity: true
