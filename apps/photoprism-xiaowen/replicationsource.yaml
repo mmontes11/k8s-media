@@ -5,8 +5,8 @@ metadata:
 spec:
   sourcePVC: photoprism-xiaowen
   trigger:
-    schedule: "0 0 * * *"
-    # manual: xiaowen-4
+    # schedule: "0 0 * * *"
+    manual: xiaowen-5
   restic:
     repository: restic-xiaowen
     retain:
@@ -25,6 +25,3 @@ spec:
     cacheStorageClassName: topolvm
     cacheAccessModes:
       - ReadWriteOnce
-    customCA:
-      secretName: homelab-bundle
-      key: ca.crt
