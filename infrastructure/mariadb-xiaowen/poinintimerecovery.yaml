@@ -9,18 +9,13 @@ spec:
     s3:
       bucket: database
       prefix: mariadb-xiaowen/binlogs
-      endpoint: minio.storage.svc.cluster.local:443
+      endpoint: seaweedfs-s3.storage.svc.cluster.local:8333
       accessKeyIdSecretKeyRef:
         name: mariadb-xiaowen
         key: access-key-id
       secretAccessKeySecretKeyRef:
         name: mariadb-xiaowen
         key: secret-access-key
-      tls:
-        enabled: true
-        caSecretKeyRef:
-          name: homelab-bundle
-          key: ca.crt
   compression: bzip2
   archiveTimeout: 1h
   strictMode: true
