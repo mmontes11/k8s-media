@@ -29,7 +29,7 @@ spec:
       PHOTOPRISM_SITE_CAPTION: "Champi"
       PHOTOPRISM_SITE_DESCRIPTION: "Champi"
       PHOTOPRISM_BACKUP_DATABASE: false
-      PHOTOPRISM_INDEX_SCHEDULE: "0 */8 * * *"
+      PHOTOPRISM_INDEX_SCHEDULE: "0 10,16,22 * * *"
       PHOTOPRISM_FFMPEG_ENCODER: "nvidia"
       NVIDIA_VISIBLE_DEVICES: "all"
       NVIDIA_DRIVER_CAPABILITIES: "all"
@@ -77,7 +77,7 @@ spec:
       enabled: true
       jobs:
         - name: faces
-          cron: "* */8 * * *"
+          cron: "0 10,16,22 * * *"
           suspend: true
           command:
             - photoprism
@@ -85,7 +85,7 @@ spec:
             - faces
             - index
         - name: vision-labels
-          cron: "* */8 * * *"
+          cron: "0 10,16,22 * * *"
           suspend: true
           command:
             - photoprism
@@ -100,7 +100,7 @@ spec:
             - "5"
             - -f
         - name: vision-caption
-          cron: "* */8 * * *"
+          cron: "0 10,16,22 * * *"
           suspend: true
           command:
             - photoprism
