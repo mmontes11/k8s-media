@@ -16,13 +16,6 @@ spec:
 
   image: mariadb:12.3.3
 
-  # Run mariadb-upgrade on startup for in-place major-version bumps
-  # (11.8 -> 12.3). Skipped by default, which leaves mysql.proc stale and
-  # breaks logical backups (mariadb-dump --routines).
-  env:
-    - name: MARIADB_AUTO_UPGRADE
-      value: "true"
-
   replicas: 2
 
   replication:
@@ -105,6 +98,7 @@ spec:
   updateStrategy:
     type: ReplicasFirstPrimaryLast
     autoUpdateDataPlane: true
+    mariadbAutoUpgradeEnabled: true
 
   suspend: false
 
