@@ -16,7 +16,7 @@ spec:
   values:
     image:
       repository: photoprism/photoprism
-      tag: "260728"
+      tag: "261007-cuda"
       pullPolicy: IfNotPresent
 
     env:
@@ -120,12 +120,14 @@ spec:
           memory: 1Gi
         limits:
           memory: 4Gi
+          nvidia.com/gpu: 1
       tolerations:
       - effect: NoSchedule
         key: node.mmontes.io/type
         value: compute-xlarge
       nodeSelector:
         node.mmontes.io/type: compute-xlarge
+      runtimeClassName: nvidia
 
     vision:
       enabled: true
