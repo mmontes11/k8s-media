@@ -17,7 +17,7 @@ spec:
     image:
       repository: photoprism/photoprism
       tag: "261007"
-      # GPU acceleration s disabled, as the models are permanently loaded in VRAM, consuming ~400MiB
+      # GPU acceleration is disabled, as the models are permanently loaded in VRAM, consuming ~400MiB
       # See: https://docs.photoprism.app/user-guide/ai/gpu-acceleration/
       # tag: "261007-cuda"
       pullPolicy: IfNotPresent
