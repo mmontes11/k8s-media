@@ -10,7 +10,7 @@
         "/(^|/)apps/photoprism-.*\\/.*\\.yaml$/"
       ],
       "matchStrings": [
-        "image:\\s+repository:\\s+photoprism/photoprism\\s+tag:\\s+[\"']?(?<currentValue>[0-9]{6})(?:-cuda)?[\"']?"
+        "image:\\s+repository:\\s+photoprism/photoprism\\s+tag:\\s+[\"']?(?<currentValue>\\d+)[\"']?"
       ],
       "datasourceTemplate": "docker",
       "packageNameTemplate": "photoprism/photoprism"
@@ -35,7 +35,7 @@
       "matchPackageNames": [
         "photoprism/photoprism"
       ],
-      "allowedVersions": "/^[0-9]{6}(-cuda)?$/"
+      "allowedVersions": "/^[0-9]{6}$/"
     },
     {
       "matchDatasources": [
