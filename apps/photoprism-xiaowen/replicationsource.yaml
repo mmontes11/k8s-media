@@ -3,6 +3,7 @@ kind: ReplicationSource
 metadata:
   name: photoprism-xiaowen
 spec:
+  paused: true
   sourcePVC: photoprism-xiaowen
   trigger:
     schedule: "0 0 * * *"
