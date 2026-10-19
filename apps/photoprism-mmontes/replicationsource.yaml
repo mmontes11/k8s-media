@@ -3,7 +3,7 @@ kind: ReplicationSource
 metadata:
   name: photoprism-mmontes
 spec:
-  paused: true
+  paused: false
   sourcePVC: photoprism-mmontes
   trigger:
     schedule: "0 0 * * *"
