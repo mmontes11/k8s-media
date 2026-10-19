@@ -8,7 +8,7 @@ spec:
     waitForIt: false
   schedule:
     cron: "30 23 * * *"
-    suspend: true
+    suspend: false
     immediate: true
     onDemand: "2"
   maxRetention: 168h # 7 days
