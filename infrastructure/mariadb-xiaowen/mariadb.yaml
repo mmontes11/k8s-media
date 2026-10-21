@@ -85,7 +85,7 @@ spec:
   #   logLevel: debug
 
   storage:
-    size: 30Gi
+    size: 40Gi
     storageClassName: topolvm
 
   tls:
