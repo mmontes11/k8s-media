@@ -145,8 +145,8 @@ spec:
       enabled: true
       host: xiaomedia.mmontes-internal.duckdns.org
       gatewayRef:
-        name: traefik-internal
-        namespace: networking
+        name: envoy-internal
+        namespace: envoy-internal
 
     runtimeClassName: nvidia
 
