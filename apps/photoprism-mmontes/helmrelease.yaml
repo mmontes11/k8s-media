@@ -11,7 +11,7 @@ spec:
         kind: HelmRepository
         name: mmontes
         namespace: flux-system
-      version: "0.14.0"
+      version: "0.15.0"
   interval: 5m
   values:
     image:
@@ -147,15 +147,18 @@ spec:
         name: envoy-internal
         namespace: envoy-internal
 
-    runtimeClassName: nvidia
-
     resources:
       requests:
         cpu: 4
         memory: 4Gi
       limits:
         memory: 4Gi
-        nvidia.com/gpu: 1
+      claims:
+        - name: gpu
+
+    resourceClaims:
+      - name: gpu
+        resourceClaimTemplateName: photoprism-mmontes-gpu
 
     tolerations:
     - effect: NoSchedule
